@@ -1,3 +1,3 @@
 # Linux Docker Kubernetes
 
-Lots of rnadom things
+Lots of random things
