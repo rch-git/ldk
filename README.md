@@ -1,3 +1,3 @@
-# Linux Docker Lubernetes
+# Linux Docker Kubernetes
 
 Lots of rnadom things
