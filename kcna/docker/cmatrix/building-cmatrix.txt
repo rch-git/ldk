@@ -70,5 +70,5 @@ matrix screensaver
 /tmp # history > shellhistory.txt
 
 # run this on the host
-sysuser@ubuntudev:~/git/docker/kcna/docker/challenge/41$ docker cp cmatrix:/tmp/shellhistory.txt ~/temp
+sysuser@ubuntudev:~/git/ldk/kcna/docker/challenge/41$ docker cp cmatrix:/tmp/shellhistory.txt ~/temp
 
