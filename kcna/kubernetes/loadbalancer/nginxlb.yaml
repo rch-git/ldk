@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: nginxdep
+  name: nginxlb
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: nginxdep
+  type: LoadBalancer
+status:
+  loadBalancer: {}
