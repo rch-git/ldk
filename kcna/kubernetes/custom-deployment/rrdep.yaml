@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: rr
+  name: rr
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: rr
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: rr
+    spec:
+      containers:
+      - image: spurin/nginx-debug
+        name: nginx-debug
+        ports:
+        - containerPort: 8080
+        resources: {}
+status: {}

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginxbluedep
+  name: nginxbluedep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginxbluedep
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: nginxbluedep
+    spec:
+      containers:
+      - image: spurin/nginx-blue
+        name: nginx-blue
+        ports:
+        - containerPort: 80
+        resources: {}
+status: {}

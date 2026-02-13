@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"labels":{"app":"nginxdep"},"name":"nginxlb","namespace":"default"},"spec":{"ports":[{"port":8080,"protocol":"TCP","targetPort":80}],"selector":{"app":"nginxdep"},"type":"LoadBalancer"},"status":{"loadBalancer":{}}}
+  creationTimestamp: "2026-02-08T21:58:46Z"
+  finalizers:
+  - service.kubernetes.io/load-balancer-cleanup
+  labels:
+    app: nginxdep
+  name: nginxlb
+  namespace: default
+  resourceVersion: "3136"
+  uid: fee74f80-82e8-400c-ada4-9de8165b7b7c
+spec:
+  allocateLoadBalancerNodePorts: true
+  clusterIP: 10.96.51.75
+  clusterIPs:
+  - 10.96.51.75
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - nodePort: 31377
+    port: 8080
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: nginxdep
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer:
+    ingress:
+    - ip: 172.18.0.5
+      ipMode: Proxy
+      ports:
+      - port: 8080
+        protocol: TCP

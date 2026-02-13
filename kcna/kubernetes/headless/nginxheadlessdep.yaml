@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginxheadlessdep
+  name: nginxheadlessdep
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginxheadlessdep
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: nginxheadlessdep
+    spec:
+      containers:
+      - image: spurin/nginx-debug
+        name: nginx-debug
+        ports:
+        - containerPort: 80
+        resources: {}
+status: {}

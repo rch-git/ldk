@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: reddep
+  name: reddep
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: reddep
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: reddep
+    spec:
+      containers:
+      - image: spurin/nginx-red
+        name: nginx-red
+        resources: {}
+status: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: bluedep
+  name: bluedep
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: bluedep
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: bluedep
+    spec:
+      containers:
+      - image: spurin/nginx-blue
+        name: nginx-blue
+        resources: {}
+status: {}
