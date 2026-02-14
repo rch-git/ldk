@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: ubuntupod
+  name: ubuntupod
+spec:
+  containers:
+  - command:
+    - bash
+    - -c
+    - env;sleep infinity
+    image: ubuntu
+    name: ubuntupod
+    resources: {}
+    envFrom:
+    - configMapRef:
+       name: colorcmcli
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+status: {}

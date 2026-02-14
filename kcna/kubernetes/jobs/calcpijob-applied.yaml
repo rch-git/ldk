@@ -1,0 +1,73 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"batch/v1","kind":"Job","metadata":{"annotations":{},"name":"calcpijob","namespace":"default"},"spec":{"template":{"metadata":{},"spec":{"containers":[{"command":["perl","-Mbignum=bpi","-wle","print bpi(2000)"],"image":"perl:5.34.0","name":"calcpijob","resources":{}}],"restartPolicy":"Never"}}},"status":{}}
+  creationTimestamp: "2026-02-14T13:26:10Z"
+  generation: 1
+  labels:
+    batch.kubernetes.io/controller-uid: 744518a6-2c0e-414d-b6d5-fef99c4a8cc7
+    batch.kubernetes.io/job-name: calcpijob
+    controller-uid: 744518a6-2c0e-414d-b6d5-fef99c4a8cc7
+    job-name: calcpijob
+  name: calcpijob
+  namespace: default
+  resourceVersion: "2884"
+  uid: 744518a6-2c0e-414d-b6d5-fef99c4a8cc7
+spec:
+  backoffLimit: 6
+  completionMode: NonIndexed
+  completions: 1
+  manualSelector: false
+  parallelism: 1
+  podReplacementPolicy: TerminatingOrFailed
+  selector:
+    matchLabels:
+      batch.kubernetes.io/controller-uid: 744518a6-2c0e-414d-b6d5-fef99c4a8cc7
+  suspend: false
+  template:
+    metadata:
+      labels:
+        batch.kubernetes.io/controller-uid: 744518a6-2c0e-414d-b6d5-fef99c4a8cc7
+        batch.kubernetes.io/job-name: calcpijob
+        controller-uid: 744518a6-2c0e-414d-b6d5-fef99c4a8cc7
+        job-name: calcpijob
+    spec:
+      containers:
+      - command:
+        - perl
+        - -Mbignum=bpi
+        - -wle
+        - print bpi(2000)
+        image: perl:5.34.0
+        imagePullPolicy: IfNotPresent
+        name: calcpijob
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Never
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status:
+  completionTime: "2026-02-14T13:26:17Z"
+  conditions:
+  - lastProbeTime: "2026-02-14T13:26:17Z"
+    lastTransitionTime: "2026-02-14T13:26:17Z"
+    message: Reached expected number of succeeded pods
+    reason: CompletionsReached
+    status: "True"
+    type: SuccessCriteriaMet
+  - lastProbeTime: "2026-02-14T13:26:17Z"
+    lastTransitionTime: "2026-02-14T13:26:17Z"
+    message: Reached expected number of succeeded pods
+    reason: CompletionsReached
+    status: "True"
+    type: Complete
+  ready: 0
+  startTime: "2026-02-14T13:26:10Z"
+  succeeded: 1
+  terminating: 0
+  uncountedTerminatedPods: {}

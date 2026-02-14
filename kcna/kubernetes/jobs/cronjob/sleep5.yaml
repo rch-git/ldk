@@ -1,0 +1,24 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: sleep5
+spec:
+  jobTemplate:
+    metadata:
+      name: sleep5
+    spec:
+      completions: 5
+      parallelism: 3
+      template:
+        metadata: {}
+        spec:
+          containers:
+          - command:
+            - sleep
+            - "5"
+            image: ubuntu
+            name: sleep5
+            resources: {}
+          restartPolicy: OnFailure
+  schedule: '* * * * *'
+status: {}

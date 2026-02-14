@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: sleep20
+spec:
+  completions: 20
+  parallelism: 5
+  template:
+    metadata: {}
+    spec:
+      containers:
+      - command:
+        - sleep
+        - "20"
+        image: ubuntu
+        name: sleep20
+        resources: {}
+      restartPolicy: Never
+status: {}

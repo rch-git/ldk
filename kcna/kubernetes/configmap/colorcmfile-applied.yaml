@@ -1,0 +1,11 @@
+apiVersion: v1
+data:
+  color: green
+  key: value
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2026-02-14T15:15:53Z"
+  name: colorcmfile
+  namespace: default
+  resourceVersion: "16292"
+  uid: e5cdf411-a4e7-4f99-aaaa-2aab23f1d099
