@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: ubuntupodpv
+  name: ubuntupodpv
+spec:
+  containers:
+  - command:
+    - sleep
+    - infinity
+    image: ubuntu
+    name: ubuntupodpv
+    resources: {}
+    volumeMounts:
+    - mountPath: /manual
+      name: manual
+    - mountPath: /dynamic
+      name: dynamic
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+  volumes:
+  - name: manual
+    persistentVolumeClaim:
+      claimName: pvcmanual
+  - name: dynamic
+    persistentVolumeClaim:
+      claimName: pvcdynamic
+status: {}
