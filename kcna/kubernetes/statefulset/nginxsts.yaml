@@ -19,11 +19,11 @@ spec:
       - image: nginx
         name: nginx
         volumeMounts:
-        - name: nginxsts
+        - name: nginxsts # has to match metadata.name
           mountPath: /data
   volumeClaimTemplates:
   - metadata:
-      name: nginxsts
+      name: nginxsts # has to match metadata.name
     spec:
       accessModes: [ "ReadWriteOnce" ]
       storageClassName: "standard"
