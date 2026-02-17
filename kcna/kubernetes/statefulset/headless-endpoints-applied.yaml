@@ -1,0 +1,56 @@
+apiVersion: v1
+kind: Endpoints
+metadata:
+  annotations:
+    endpoints.kubernetes.io/last-change-trigger-time: "2026-02-17T02:55:10Z"
+  creationTimestamp: "2026-02-17T02:55:10Z"
+  labels:
+    app: nginxsts
+    endpoints.kubernetes.io/managed-by: endpoint-controller
+    service.kubernetes.io/headless: ""
+  name: nginxsts
+  namespace: default
+  resourceVersion: "60433"
+  uid: 52bfe89e-6905-4f09-b52f-4894d96e8ec8
+subsets:
+- addresses:
+  - hostname: nginxsts-0
+    ip: 10.244.1.5
+    nodeName: klc-worker
+    targetRef:
+      kind: Pod
+      name: nginxsts-0
+      namespace: default
+      uid: 18ea3be4-235b-44c0-9a0f-38afbd55d9d0
+  - hostname: nginxsts-2
+    ip: 10.244.1.6
+    nodeName: klc-worker
+    targetRef:
+      kind: Pod
+      name: nginxsts-2
+      namespace: default
+      uid: 32cc3454-b30d-4bdb-83bb-f41894c90633
+  - hostname: nginxsts-4
+    ip: 10.244.1.7
+    nodeName: klc-worker
+    targetRef:
+      kind: Pod
+      name: nginxsts-4
+      namespace: default
+      uid: a7a74644-ffe3-4aa7-b972-f072ca01ad6a
+  - hostname: nginxsts-1
+    ip: 10.244.2.5
+    nodeName: klc-worker2
+    targetRef:
+      kind: Pod
+      name: nginxsts-1
+      namespace: default
+      uid: d19ecf20-c172-42f3-a8a0-3d2510d05ffc
+  - hostname: nginxsts-3
+    ip: 10.244.2.6
+    nodeName: klc-worker2
+    targetRef:
+      kind: Pod
+      name: nginxsts-3
+      namespace: default
+      uid: 5fcce19d-8864-434c-bb53-8332e8249e6c

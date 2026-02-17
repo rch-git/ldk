@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: nginxsts
+  name: nginxsts
+spec:
+  clusterIP: None
+  selector:
+    app: nginxsts
+  type: ClusterIP
+status:
+  loadBalancer: {}

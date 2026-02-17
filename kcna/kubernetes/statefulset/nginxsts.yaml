@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app: nginxsts
+  name: nginxsts
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginxsts
+  serviceName: nginxsts # service name has to match the name of the statefulset or else it is not possible to curl by podhost name
+  template:
+    metadata:
+      labels:
+        app: nginxsts
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        volumeMounts:
+        - name: nginxsts
+          mountPath: /data
+  volumeClaimTemplates:
+  - metadata:
+      name: nginxsts
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "standard"
+      resources:
+        requests:
+          storage: 10Mi

@@ -1,0 +1,92 @@
+addressType: IPv4
+apiVersion: discovery.k8s.io/v1
+endpoints:
+- addresses:
+  - 10.244.2.6
+  conditions:
+    ready: true
+    serving: true
+    terminating: false
+  hostname: nginxsts-3
+  nodeName: klc-worker2
+  targetRef:
+    kind: Pod
+    name: nginxsts-3
+    namespace: default
+    uid: 5fcce19d-8864-434c-bb53-8332e8249e6c
+- addresses:
+  - 10.244.1.7
+  conditions:
+    ready: true
+    serving: true
+    terminating: false
+  hostname: nginxsts-4
+  nodeName: klc-worker
+  targetRef:
+    kind: Pod
+    name: nginxsts-4
+    namespace: default
+    uid: a7a74644-ffe3-4aa7-b972-f072ca01ad6a
+- addresses:
+  - 10.244.1.5
+  conditions:
+    ready: true
+    serving: true
+    terminating: false
+  hostname: nginxsts-0
+  nodeName: klc-worker
+  targetRef:
+    kind: Pod
+    name: nginxsts-0
+    namespace: default
+    uid: 18ea3be4-235b-44c0-9a0f-38afbd55d9d0
+- addresses:
+  - 10.244.2.5
+  conditions:
+    ready: true
+    serving: true
+    terminating: false
+  hostname: nginxsts-1
+  nodeName: klc-worker2
+  targetRef:
+    kind: Pod
+    name: nginxsts-1
+    namespace: default
+    uid: d19ecf20-c172-42f3-a8a0-3d2510d05ffc
+- addresses:
+  - 10.244.1.6
+  conditions:
+    ready: true
+    serving: true
+    terminating: false
+  hostname: nginxsts-2
+  nodeName: klc-worker
+  targetRef:
+    kind: Pod
+    name: nginxsts-2
+    namespace: default
+    uid: 32cc3454-b30d-4bdb-83bb-f41894c90633
+kind: EndpointSlice
+metadata:
+  annotations:
+    endpoints.kubernetes.io/last-change-trigger-time: "2026-02-17T02:55:10Z"
+  creationTimestamp: "2026-02-17T02:55:10Z"
+  generateName: nginxsts-
+  generation: 1
+  labels:
+    app: nginxsts
+    endpointslice.kubernetes.io/managed-by: endpointslice-controller.k8s.io
+    kubernetes.io/service-name: nginxsts
+    service.kubernetes.io/headless: ""
+  name: nginxsts-mg2ng
+  namespace: default
+  ownerReferences:
+  - apiVersion: v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: Service
+    name: nginxsts
+    uid: 4704ff91-4e76-4494-a717-f14661799322
+  resourceVersion: "60432"
+  uid: a182046f-c4aa-4b5f-89b5-c8617819c253
+ports: null
