@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-nginxpod-access
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      run: nginxpod
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          run: curlpod # only allow access from a pod which has run: curlpod in the matchLabels section
