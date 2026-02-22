@@ -7,7 +7,7 @@ ENV TZ=UTC
 
 RUN apt-get update && \
     apt-get install -y software-properties-common --no-install-recommends && \
-    apt-get install -y openssh-server iputils-ping curl bash iproute2 iptables tzdata ca-certificates nano git tree && \
+    apt-get install -y openssh-server iputils-ping curl bash iproute2 iptables tzdata ca-certificates nano git tree yq && \
     mkdir -p /var/run/sshd /root/.ssh && \
     sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config && \
     sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config && \
@@ -19,6 +19,9 @@ RUN apt-get update && \
     # change permissions to ./ssh directory to drwx------
     chmod 600 /root/.ssh/authorized_keys && chmod 700 /root/.ssh && \
     curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash && \
+    helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/ && \
+    helm repo add prometheus-community https://prometheus-community.github.io/helm-charts && \
+    helm repo update && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 EXPOSE 22

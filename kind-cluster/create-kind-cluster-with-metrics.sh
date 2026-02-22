@@ -25,8 +25,8 @@ echo "[+] Waiting for kube-system core pods to be ready..."
 kubectl wait --for=condition=Ready pods --all -n kube-system --timeout=300s || true
 
 # Install metrics server using helm from official release. Ensure that metrics-values.yaml exists in the directory
-helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
-helm repo update
+# helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
+# helm repo update
 helm upgrade --install metrics-server metrics-server/metrics-server -n kube-system -f ~/git/ldk/kind-cluster/metrics-values.yaml
 
 # Verify readiness
