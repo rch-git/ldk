@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 ###################################################################################################
-# Run this script - bash ~/git/ldk/kind-cluster/create-kind-cluster-with-metrics.sh
+# Run the script: bash ~/git/ldk/kind-cluster/create-kind-cluster-with-metrics.sh
 # Or
 # Make this script executable - chmod +x ~/git/ldk/kind-cluster/create-kind-cluster-with-metrics.sh
-# ~/git/ldk/kind-cluster/create-kind-cluster-with-metrics.sh
+# Run the script: ~/git/ldk/kind-cluster/create-kind-cluster-with-metrics.sh
 ###################################################################################################
 
 # Exit immediately upon failure, treat unset vairables as an error & exit, and first nonzero exit code for any pipeline portion
