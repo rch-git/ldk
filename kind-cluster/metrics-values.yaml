@@ -1,0 +1,18 @@
+# metrics-values.yaml
+args:
+  - --kubelet-insecure-tls
+  - --kubelet-preferred-address-types=InternalIP
+
+# Optional but commonly used:
+hostNetwork:
+  enabled: false
+metrics:
+  enabled: true
+
+# Resource requests (safe defaults)
+resources:
+  requests:
+    cpu: 100m
+    memory: 200Mi
+  limits:
+    memory: 300Mi
