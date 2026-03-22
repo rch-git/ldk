@@ -1,0 +1,66 @@
+Name:             ubuntupod
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             klc-worker/172.18.0.4
+Start Time:       Sun, 22 Mar 2026 07:53:38 -0500
+Labels:           run=ubuntupod
+Annotations:      <none>
+Status:           Running
+IP:               10.244.2.26
+IPs:
+  IP:  10.244.2.26
+Containers:
+  ubuntupod:
+    Container ID:   containerd://8dbdccf259c3401af11a71cd871668bbb1b3bc98a4c82d4a46146c3965947684
+    Image:          ubuntu
+    Image ID:       docker.io/library/ubuntu@sha256:186072bba1b2f436cbb91ef2567abca677337cfc786c86e107d25b7072feef0c
+    Port:           <none>
+    Host Port:      <none>
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Sun, 22 Mar 2026 07:56:46 -0500
+      Finished:     Sun, 22 Mar 2026 07:56:46 -0500
+    Last State:     Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Sun, 22 Mar 2026 07:55:21 -0500
+      Finished:     Sun, 22 Mar 2026 07:55:21 -0500
+    Ready:          False
+    Restart Count:  5
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-8k2xx (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       False 
+  ContainersReady             False 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-8k2xx:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason     Age                  From               Message
+  ----     ------     ----                 ----               -------
+  Normal   Scheduled  3m17s                default-scheduler  Successfully assigned default/ubuntupod to klc-worker
+  Normal   Pulled     3m15s                kubelet            spec.containers{ubuntupod}: Successfully pulled image "ubuntu" in 1.044s (1.044s including waiting). Image size: 29741401 bytes.
+  Normal   Pulled     3m13s                kubelet            spec.containers{ubuntupod}: Successfully pulled image "ubuntu" in 994ms (994ms including waiting). Image size: 29741401 bytes.
+  Normal   Pulled     2m58s                kubelet            spec.containers{ubuntupod}: Successfully pulled image "ubuntu" in 1.125s (1.125s including waiting). Image size: 29741401 bytes.
+  Normal   Pulled     2m35s                kubelet            spec.containers{ubuntupod}: Successfully pulled image "ubuntu" in 1.049s (1.049s including waiting). Image size: 29741401 bytes.
+  Normal   Pulled     94s                  kubelet            spec.containers{ubuntupod}: Successfully pulled image "ubuntu" in 1.267s (1.267s including waiting). Image size: 29741401 bytes.
+  Normal   Pulling    11s (x6 over 3m16s)  kubelet            spec.containers{ubuntupod}: Pulling image "ubuntu"
+  Normal   Created    9s (x6 over 3m15s)   kubelet            spec.containers{ubuntupod}: Container created
+  Normal   Started    9s (x6 over 3m15s)   kubelet            spec.containers{ubuntupod}: Container started
+  Warning  BackOff    9s (x6 over 3m12s)   kubelet            spec.containers{ubuntupod}: Back-off restarting failed container ubuntupod in pod ubuntupod_default(54fc0bc6-46b4-4cf7-90b5-e343472d45e8)
+  Normal   Pulled     9s                   kubelet            spec.containers{ubuntupod}: Successfully pulled image "ubuntu" in 1.272s (1.272s including waiting). Image size: 29741401 bytes.

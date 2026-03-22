@@ -1,0 +1,66 @@
+Name:             ubuntupod
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             klc-worker/172.18.0.4
+Start Time:       Sun, 22 Mar 2026 08:01:49 -0500
+Labels:           run=ubuntupod
+Annotations:      <none>
+Status:           Running
+IP:               10.244.2.27
+IPs:
+  IP:  10.244.2.27
+Containers:
+  ubuntupod:
+    Container ID:  containerd://f37be62a39e3f8c93082f5501da3a6de3427c9bc6523e57afefa06612c060ea4
+    Image:         ubuntu
+    Image ID:      docker.io/library/ubuntu@sha256:186072bba1b2f436cbb91ef2567abca677337cfc786c86e107d25b7072feef0c
+    Port:          <none>
+    Host Port:     <none>
+    Args:
+      sleeep
+      infinity
+    State:          Waiting
+      Reason:       RunContainerError
+    Last State:     Terminated
+      Reason:       StartError
+      Message:      failed to create containerd task: failed to create shim task: OCI runtime create failed: runc create failed: unable to start container process: error during container init: exec: "sleeep": executable file not found in $PATH
+      Exit Code:    128
+      Started:      Wed, 31 Dec 1969 18:00:00 -0600
+      Finished:     Sun, 22 Mar 2026 08:03:20 -0500
+    Ready:          False
+    Restart Count:  4
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-t2hlw (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       False 
+  ContainersReady             False 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-t2hlw:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason     Age                 From               Message
+  ----     ------     ----                ----               -------
+  Normal   Scheduled  2m9s                default-scheduler  Successfully assigned default/ubuntupod to klc-worker
+  Normal   Pulled     2m8s                kubelet            spec.containers{ubuntupod}: Successfully pulled image "ubuntu" in 1.167s (1.167s including waiting). Image size: 29741401 bytes.
+  Normal   Pulled     2m7s                kubelet            spec.containers{ubuntupod}: Successfully pulled image "ubuntu" in 712ms (712ms including waiting). Image size: 29741401 bytes.
+  Normal   Pulled     113s                kubelet            spec.containers{ubuntupod}: Successfully pulled image "ubuntu" in 1.335s (1.335s including waiting). Image size: 29741401 bytes.
+  Normal   Pulled     92s                 kubelet            spec.containers{ubuntupod}: Successfully pulled image "ubuntu" in 978ms (978ms including waiting). Image size: 29741401 bytes.
+  Normal   Pulling    40s (x5 over 2m9s)  kubelet            spec.containers{ubuntupod}: Pulling image "ubuntu"
+  Normal   Created    39s (x5 over 2m8s)  kubelet            spec.containers{ubuntupod}: Container created
+  Normal   Pulled     39s                 kubelet            spec.containers{ubuntupod}: Successfully pulled image "ubuntu" in 1.105s (1.105s including waiting). Image size: 29741401 bytes.
+  Warning  Failed     38s (x5 over 2m8s)  kubelet            spec.containers{ubuntupod}: Error: failed to create containerd task: failed to create shim task: OCI runtime create failed: runc create failed: unable to start container process: error during container init: exec: "sleeep": executable file not found in $PATH
+  Warning  BackOff    38s (x5 over 2m6s)  kubelet            spec.containers{ubuntupod}: Back-off restarting failed container ubuntupod in pod ubuntupod_default(05b25da8-eaf2-4825-b46e-47653d032cab)
