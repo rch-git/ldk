@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
 ###################################################################################################
+# install helm
+# curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-4 | bash
+#
 # Run the script: bash ~/git/ldk/kind-cluster/create-kind-cluster-with-metrics.sh
 # Or
 # Make this script executable - chmod +x ~/git/ldk/kind-cluster/create-kind-cluster-with-metrics.sh

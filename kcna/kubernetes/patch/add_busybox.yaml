@@ -1,0 +1,9 @@
+# uses json patch. have to specify --type=json when using kubectl patch
+- op: add
+  path: /spec/template/spec/containers/-
+  value:
+    name: busybox
+    image: busybox
+    args:
+      - sleep
+      - infinity
