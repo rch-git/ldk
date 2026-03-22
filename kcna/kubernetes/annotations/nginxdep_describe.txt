@@ -1,0 +1,36 @@
+Name:                   nginxdep
+Namespace:              default
+CreationTimestamp:      Sun, 22 Mar 2026 18:29:06 -0500
+Labels:                 app=nginxdep
+Annotations:            company.org/owner: platform-team
+                        company.org/ticketno: OP-1234
+                        deployment.kubernetes.io/revision: 1
+Selector:               app=nginxdep
+Replicas:               1 desired | 1 updated | 1 total | 1 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:       app=nginxdep
+  Annotations:  company.org/note: this is a pod annotation
+  Containers:
+   nginx:
+    Image:         nginx
+    Port:          <none>
+    Host Port:     <none>
+    Environment:   <none>
+    Mounts:        <none>
+  Volumes:         <none>
+  Node-Selectors:  <none>
+  Tolerations:     <none>
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+  Progressing    True    NewReplicaSetAvailable
+OldReplicaSets:  <none>
+NewReplicaSet:   nginxdep-7d6b755bbb (1/1 replicas created)
+Events:
+  Type    Reason             Age   From                   Message
+  ----    ------             ----  ----                   -------
+  Normal  ScalingReplicaSet  25s   deployment-controller  Scaled up replica set nginxdep-7d6b755bbb from 0 to 1
