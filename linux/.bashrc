@@ -95,6 +95,7 @@ PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[0
 
 # Your custom aliases
 alias mytemp='cd ~/temp'
-alias ldk='cd ~/git/docker/kcna'
+alias ldk='cd ~/git/ldk'
 alias vmshare='cd ~/vmshare'
 alias opengit='cd ~/git'
+alias lclh='cd ~/git/thelocalhoster'
