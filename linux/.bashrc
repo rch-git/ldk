@@ -94,9 +94,13 @@ parse_git_info() {
 PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[01;33m\]$(parse_git_info)\[\033[00m\]\$ '
 
 # Your custom aliases
+# mv ~/.bashrc .bashrc.bak
+# cp ~/git/ldk/linux/.bashrc ~/.bashrc && source ~/.bashrc
 alias mytemp='cd ~/temp'
 alias ldk='cd ~/git/ldk'
 alias vmshare='cd ~/vmshare'
 alias opengit='cd ~/git'
-alias lclh='cd ~/git/thelocalhoster'
-alias alinux='cd ~/git/alinuxuser'
+alias lcl='cd ~/git/thelocalhoster'
+alias alin='cd ~/git/alinuxuser'
+alias ablg='cd ~/git/blog.alinuxuser.com'
+alias agal='cd ~/git/gallery.alinuxuser.com'
