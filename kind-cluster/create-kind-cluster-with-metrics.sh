@@ -10,7 +10,7 @@
 # Run the script: ~/git/ldk/kind-cluster/create-kind-cluster-with-metrics.sh
 ###################################################################################################
 
-# Exit immediately upon failure, treat unset vairables as an error & exit, and first nonzero exit code for any pipeline portion
+# Exit immediately upon failure, treat unset variables as an error & exit, and first nonzero exit code for any pipeline portion
 set -euo pipefail
 
 # Either pass a config file when running the script, or it will default to klc.yaml
