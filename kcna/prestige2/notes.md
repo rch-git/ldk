@@ -46,3 +46,19 @@ knative and openfaas. serverless web app on top of kubernets, automatically crea
 
 cloud event specification describes event data in common formats. hosted by cncf. there is sdk in most major languages and cover common protocols. 
 
+#### 24 - Community and Governance
+
+envoy and prometheus are a part of cncf. 
+
+sandbox, incubating, graduating. crossing the chasm is the difficult area to cross between incubating to graduating. 
+
+innovators are users who use sandbox projects. early adopters or visionaries who use incubating projects. the chasm is encountered. early majority or pragmatists who this project before graduation. this is followed by late majority or conservatives who use graduated projects. laggards are skeptics. those use the project when they are absolutely required, and are forced to use due to competition etc. 
+
+projects demonstrate their maturity to CNCF technical oversight committee (toc). 
+
+elections and voting happens at CNCF with regards to projects. discussion and reconciliation happen. elections and voting happens when no compromise can be reached. votes can be binding and nonbinding. 
+
+sig - special interest groups that focus on a particular area of a project. anyone can join this group and contribute. good way to get involved in open source. 
+
+tag - technical advisory groups for cncf projects. provide guidence across specific domains. coordinate needs of users. 
+
