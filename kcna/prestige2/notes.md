@@ -137,3 +137,13 @@ new namespace -
 
 docker took namespaces (including cgroups) and created the containers. all containers share the os. 
 
+#### 36 - Container Images
+
+container image - portable self contained bundle of software 
+
+oci compliant images can be used in docker, kubernetes etc. 
+
+container - instance of software. 
+
+digest is the checksum of an image. 
+
