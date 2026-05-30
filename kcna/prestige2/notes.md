@@ -229,7 +229,163 @@ Where cluster management components run.
 
 **Tip**: For remote clusters, use `kubectl port-forward` to access pods locally.
 
----
+- Use curl pod for accessing pods etc. 
 
-**Notes cleaned, grammar fixed, structure improved, and technical terms standardized.**  
-Let me know if you'd like me to expand any section, add diagrams, create flashcards, or continue with the next topics!
+using sleep infinity is a good option to make a ubuntu or other such pods stay running. following this, we can exec into the pod. pid 1 in the pod is going to be sleep infinity. 
+
+in newer version of kubernetes use --now to shut down the pod right away. 
+
+## 61 - Kubernetes Pods (Part 2)
+
+kubectl can be used to create yaml. 
+
+restartPolicy : always, never, onfailure. 
+
+kubectl explain can be used. kubectl explain pod.spec.restartPolicy
+
+create, replace, delete are imperative command. 
+
+kubectl apply is a declarative command. 
+
+## 62 - Kubernetes Pods (Part 3)
+
+sidecar - container on the side. used to carry out a specific task on the side. 
+
+if there are two container on a pod, they share an ipaddress. 
+
+in a kubernetes cluster limits - 
+- 5000 nodes max
+- 110 pods/node
+- 150,000 pods
+- 300,000 containers
+
+## 66. Kubernetes Pods Troubleshooting
+
+- kubectl describe
+- kubectl logs
+- kubectl exec
+
+very useful for troubleshooting
+
+pod lifecycle
+- pending - k8s knows about this pod
+- containerCreating
+- running - main process is running
+- invalidimagename
+- errimagepull - registry doesnt exist, cant talk to registry etc. 
+- imagepullbackoff
+- succeeded
+- completed - container exited and the pod keeps restarting
+- runcontainererror - if a bad argument is passed to pid 1. like 'sleeep'. 
+
+pending with no node assigned is usually a scheduling problem. 
+pending with a node assigned is typically an image or container problem
+
+os based images usually have a default command like bash. if no sleep infinity is passed, it will exit immediately because no command is sent to bash. 
+
+kubectl logs -p <container name> can be used to view previous logs. only works when container is restarted. 
+
+kubectl logs ubuntu --all-containers -f --tail=20
+
+kubectl exec ubuntu -c ubuntu -- env to get all the environment variables. 
+
+## 69. Kubernetes Namespaces
+
+fundamental to dividing resources. 
+
+town - cluster
+house - namespace
+room - pod
+furniture - containers
+
+- isolation
+- resource management per namespace
+- security - rbac
+- organization - rbac
+
+kube-node-lease - hold objects associated with nodes. can send heartbeat to detect node failure. 
+kube-public - for resources that should be readable to the entire cluster. 
+
+kubectl api-resources will show whether or not a resource is namespaced. 
+
+kubectl config view will show the default context. 
+
+kubectl config set-context --current --namespace=mynamespace
+
+## 72. Kubernetes Deployments and ReplicaSets
+
+kubernetes deployment is a resource object. declarative updates for applications. allow outline application lifecycle. images, pod replicas. designed to update app predictably. maintain availability. deployment makes sure the number of pods is as expected. updates are phased out gradually to prevent all instances from being updated simultaneosly. 
+
+rollbacks happen when something goes wrong. makes updates safer. 
+
+deployments manage replicasets. declarative way to deploy manage applications. 
+
+deployments automatically create replicasets. append an identifier. 
+
+deployments have a rollout history. 
+
+kubectl annototate kubernetes.io/change-cause will update the field. 
+
+strategy - maxSurge (increase the number of pods by 25% of desired), maxUnavailable (up to 25% of the pods can be unavailable during updates)
+
+kubectl rollout undo deployment/nginx
+
+4th revision becomes 6th revision when we do an undo. 
+
+deleting deployment will delte replicasets. 
+
+In a Pod the spec for the Pod itself starts at the top level - spec
+
+In a Deployment, the spec for the Pod starts at spec.template.spec
+
+## 76. Kubernetes DaemonSets
+
+Ensure that a pod runs on every node. 
+
+CNI, security, logging are common daemonsets. 
+
+daemonset is a kubernetes resource that ensures that all nodes run a copy pod. when a new node is added, daemonset ensures that the pod starts on the node. 
+- logging (filebeat), monitoring, networking. 
+
+daemonset is a deployment for nodes. one pod per node. 
+
+there is no kubectl command for creating a daemonset. create a deployment and make changes instead. 
+
+there is no concept of replicas or strategy in daemonset. 
+
+## 79. Kubernetes Kubectl Set Image & Patch
+
+setimage is a convenience command. designed specifically for updating container images
+
+especially useful with deploymnets. it will kick off a rolling update. 
+
+kubectl patch is more general purpose. any part of the resource spec can be updated by spending partial spec. 
+
+kubectl set image pod/nginx *=nginx:stable
+
+kubectl set image deployment/web *=nginx:alpine-slin; kubectl rollout status deployment/web
+
+when using a deployment, a new replicaset is created when the image changes. 
+
+kubectl patch is more powerful. can send a partial update to the api server. 
+
+kubectl patch uses strategic merge. this means the contents of the patch is merge with what exists. 
+
+if the patch modifies the spec with an entirely new image with a different name, then a new pod is created. 
+
+patch uses jsonpatch. 
+
+## 82. Kubernetes Services
+
+a default service in kubernetes is a clusterip
+
+dns name: curl <service-name>.<namespace-name>.svc.cluster.local
+
+we can expose a deployment as a nodeport
+
+80:12345/tcp
+- 80 is the port the application is listening to
+- 12345 is the port each kubernetes node is listening on
+
+external name is a cname
+
