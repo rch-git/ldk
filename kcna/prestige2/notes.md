@@ -147,3 +147,88 @@ container - instance of software.
 
 digest is the checksum of an image. 
 
+#### 39 - Running Containers
+
+`docker version` command to run to get the version
+
+containerd is a graduated cncf project donated by docker. 
+
+runc is donated to oci by docker. 
+
+#### 42 - Container Network Services and Volumes
+
+80/tcp is the format for how ports is listed. its not accessible outside. that is the container port
+
+0.0.0.0:32768->80/tcp means that locally, you can access the application on 32768 but inside the container it is running on 80
+
+docker run -d --rm -p 12345:80 nginx
+
+this will map 12345 on local to 80 inside the container. 
+
+#### 51 - Container Orchestration Introduction
+
+container orchestration is automating the operational need of running container. this provides standards and frameworks for deploying containerized applications. 
+
+this excels in provisioning, deployment, availability, self healing, scheduling, exposing container services
+
+kubernates won the orchestration race. open shift, docker swarm and nomad exist, but they are very small in footprint. 
+
+#### 53 - Kubernetes Architecture
+
+control plane - where most major components in kubernetes run
+
+nodes - workloads run
+
+control plane
+- runc (namespaces and cgroups) this is the reference implementation of low level runtime. this is an oci compatible runtimes. crun, kataruntime, givzor are other alternatives. 
+- typically this is not manually installed. 
+- high level container runtime is installed. 
+- containerd is donated to cncf by docker. this manages the entire container life cycle (pulling, storing, execution, networking). installing containerd via a package manager, it will install runc. 
+- kubelet (present on control plane also). 
+- static pods based on a directory. they communicate with kublet on nodes. 
+    - etcd (strongly consistent key value store, headless elections, network partitions, source of truth.) multiple instances of etcd is recommend for prod. odd number is preferred. raft consensus is used by etcd. api server is the main component that talks to etcd. 
+    - kubeapi server. central point of cluster. it is used by all users and components for access. provides restful api interface. stores all data in persistent storage backend. kubelet also talks to api server. kubectl communictes with control plane via api server. 
+    - kube scheduler is a control plane process, and it is a static pod. determind which nodes are valid placement for pods. 
+    - the controller manager are static pods on the control plane. they are control loops that monitor the state of cluster. they are responsible for moving the cluster towards the desired state. 
+- kube proxy runs as a daemon set runs as a standard pod on the contol place. communicates with api server. configures tcp/udp/sctp on any system. runs on both control plane and node
+- coredns is a dns server which is a kubernetes deployment. it is a normal pod. when a worker pod does a dns look up, it goes to coredns, and that replies in the form of a clusterip. 
+- cloud controller manager - seen in public cloud providers. bridges functionality of cloud provider and cluster. integrate load balancer etc. 
+    
+
+node
+- runc
+- kubelet (present on node but not exclusive). maintains pods. makes use of podspec. can receive requests via api or by monitoring a directory.
+- kube proxy runs as a daemon set runs as a standard pod on the contol place. communicates with api server. configures tcp/udp/sctp on any system. runs on both control plane and node
+
+cni (container network interface)
+
+- coredns - how do i find you?
+- cni - how do i reach you. 
+
+cni and coredns work together and solve different problems. 
+
+cni is a contract between container runtime (via kubelet) and a plugin on each node.
+
+when a pod is created - 
+
+- add an interface to the pod
+- assign an ip
+- program routes so traffic can reach pods
+- apply policy (optional)
+
+modern cni
+- flannel
+- calico
+- cilium
+
+#### 60 - Kubernetes Pods - Part 1
+
+- smallest unit of compute
+- one or more containers
+- containers will share networking and will communicate using localhost. 
+- each pod has a unit ip address
+- containers in a pod communicate using Inter process communicatiojn (ipc)
+- a pod can encapsulate an application, its dependencies, shared storage, networking into a deployable unit. 
+
+when running remotely, use kubectl port forwarding. 
+
