@@ -389,3 +389,30 @@ we can expose a deployment as a nodeport
 
 external name is a cname
 
+## 85. Kubernetes Jobs
+
+completions
+
+desired number of successfully finished pods that the job should run with. null means success one is success of all. 
+
+parallelism
+
+max. desired pods the job should run at a given time. actual number in steady state is less than this number when completions - successful < 1 i.e. when work left is less than max parallelism. 
+
+completion 20 (job creates 20 pods)
+parallelism 5 (no more than 5 pods are active at any given time)
+
+deleting a job will terminate all the pods. 
+
+cron jobs - time based job scheduler. 
+
+crontab.guru
+
+successfuljobshistorylimit: 3
+
+## 89. Kubernetes ConfigMaps
+
+--from-literal=color=red --from-literal=key=value
+
+--from-env-file to load from a file
+
