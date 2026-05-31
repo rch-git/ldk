@@ -416,3 +416,332 @@ successfuljobshistorylimit: 3
 
 --from-env-file to load from a file
 
+## 92. Kubernetes Secrets
+
+secret is an object that can be used to store senitive information. password, tokens, keys. 
+
+no need to include confidential information in application. 
+
+base64 encoded. 
+
+kubectl create secret generic color-secret --from-literal=color=red --from-literal=key=value
+
+stored in etcd unencrypted. etcd access should be restricted. 
+
+secretRef instead of configMapRef
+
+## 96. Kubernetes Labels
+
+labels in k8s are fundaments in identifying and organizing resources. 
+
+assigning metadata to k8s objects. 
+
+tagging resources. 
+
+identify individual or groups of resources. ex - app1 or team1
+
+a service can use label secletor to identify pods to route traffic to. 
+
+ci cd pipeline can be use lables for deploying. 
+
+load balancing and network policies to define rules for pod communication. 
+
+create scopes for environments in k8s cluster. dev, test, prod. 
+
+thoughtful label strategy = better administration. 
+
+run: nginx 
+
+selector
+run: nginx
+
+when we expose a service, the label is used as a selector. 
+
+kubectl get all --selector run=nginx
+
+## 98. Kubernetes Annotations
+
+annotations are metadata along with labels. they are not a replacement for labels. 
+
+labels are for identification and selection. annotations are for descriptive and instructive metadata - not for identification or selection. 
+
+operational metadata, trigger behavior, controller configuration, build info. 
+
+ex - 
+
+annotations:
+company.org/owner: "platform-team"
+company.org/ticket: "ops-1234"
+company.org/note: "This is a note"
+
+changing annotation will trigger a new replicaset. this is important metadata. 
+
+## 102. Kubernetes Startup, Liveness and Readiness Probes
+
+there are three types of probes for apps in k8s. 
+
+startup - has the app finished starting. pending or failing at this stage does not run liveness or rediness
+
+liveness - should k8s restart this container. is this pod still alive? kubelet will restart this container based on restart policy. 
+
+rediness - should pod receive traffic? if it fails, removed from service backends. 
+
+k8s does not show a steady stream of success. only failures show in kubectl describe. 
+
+## 105. Kubernetes API
+
+The KCNA Examination focusses on the theory of the API and particular attention should be made for the following areas -
+
+    How CRD's can be used to extend the Kubernetes API
+
+    How to list resource types in a cluster
+
+    The use of --authorization-mode
+
+    The main three stages a request will pass through on its journey via the API server
+    
+primary interface for users and system components
+
+restfulapi
+
+users interact with api using kubectl, helm and client libraries. create deployments, services etc. 
+
+monitoring tools, internal components. 
+
+kubescheduler uses api to track state of pods, nodes, scheduling pods onto nodes. 
+
+kubelet uses api to report status of nodes and pods on the node. receive instructions on which pods to run. 
+
+kube api server can use admission controller to enforce rules. 
+
+- request arrival, https endpoint, listening on 6443
+- route matching (based on url, and method get, post put, delete)
+- authentication (does it include a api key)
+- authorization (if --authorization-mode is not set in api server, defaults to alwaysallow)
+- admission controller
+- validation (checks request data for format etc.)
+- request handling (passed to function)
+- response generation
+- response sending
+
+crd - custom resource definition
+
+- way to define new resource types
+`apiVersion: mysql.oracle.com/v2`
+`kind: InnoDBCluster`
+
+kubectl is a warapper to the api. 
+
+kubectl apt-resources 
+
+`kubectl proxy &` will serve on 8001 locally, no authentication needed and have to use http. 
+
+”Rule #7: Deprecated behaviors must function for no less than 1 year after their announced deprecation.”
+
+https://kubernetes.io/docs/reference/using-api/#api-versioning
+
+## 110. Kubernetes RBAC
+
+method of regulating access to resources inside the cluster. 
+
+policy based access for users, groups and service accounts.
+
+kubeconfig is the starting point of rbac. 
+
+certificate-authority-data, client-certificate-data, client-key-data
+
+when cluster is created, ca is setup. for creating and verifying certificates. ca public cert allows verifying the authenticity of the server for the client. 
+
+`subject: O = system:masters, CN = system:admin`
+
+with rbac k8s is not concerned with managing users or groups. there is no concept of users or groups. k8s expects certificates with subject identifier. 
+
+user john doe
+country usa
+
+CN=john doe
+O=USA
+
+ownership of certificate with private key proves who the user is. if it is signed, k8s respects this as a valid user and group. we permission the users and groups with rbac. 
+
+`kubectl get clusterrolebindings`
+
+users - individuals or applications that interact with cluster. 
+
+users are not managed by k8s. they are assumed to be managed by an external entity. 
+
+groups are also typically managed outside of k8s. 
+
+groups are a way to attach some users to a set of permissions. 
+
+service accounts are used by applications. not by humans. service accounts are k8s objects. they are managed by k8s. they are used to give app running in pod to give necessary permissions. 
+
+cluster role is a non namespaced resource. applies to entire cluster. 
+
+clusterrolebinding binds a clusterrole to a service account. 
+
+system:admin -> system:masters -> cluster-admin role via crb. 
+
+kubectl describe ClusterRole/cluster-admin
+
+resources *.*
+Verbs [*]
+
+kubectl auth can-i '*' '*' //resource verb
+
+role - namespace - grants specific permissions within a namespace
+rolebinding - namespace - binds users/groups/service accounts to a role within a namespace
+clusterrole - clusterwide - grants permissions to resource across cluster
+clusterrolebindings - clusterwide - binds users, groups, service accounts to a clusterrole. 
+
+From a KCNA examination viewpoint, it is important to be aware that by default, a Pod will be assigned the ‘default’ Service Account in that Namespace.
+
+## 117. Kubernetes Scheduler and NodeName
+
+## 121. Kubernetes Taints and Tolerations
+
+taints are applied to nodes. should not accept any pods that do not have matching toleration. 
+
+tolerations are applied to pods. allowing them to scheduled on nodes with matching taints. 
+
+kubeadm can have taints that prevent pods from running on control plane nodes. 
+
+k3s, microk8s remove taints. pods can run on control plane. 
+
+format for taint - key=value:effect
+
+noschedule - pods currently running on the node are not evicted. 
+
+noexecute - pods are evicted. 
+
+deployments are a better use case for pods because they handle evictions better.
+
+pods have to fulfill all taints. 
+
+## 124. Kubernetes Affinity
+
+requiredDuringSchedulingIgnoredDuringExecution - hard rule. The scheduler must place the pod only on nodes that match the affinity rules, or the pod will remain unscheduled. 
+preferredDuringSchedulingIgnoredDuringExecution - soft rule. The scheduler tries to place the pod on matching nodes when possible, but it can still schedule the pod elsewhere if no matching node is available.
+
+node affinity - pin workloads to nodes
+pod affinity/anti-affinity - co locate pods, or separate them
+preferred affinity - bias placement
+
+kubernetes scheduling = filters + scoring
+
+preferred affinity = score boost
+required affinity = filter
+
+nodeSelectorTerms:
+- matchExpressions:
+  - key: disktype
+    operator: In
+    values:
+    - ssd
+    
+affinity uses labels. not taints and tolerations. 
+
+weight from each rule defined in the pod spec is summed across entire node. weights contribute to the overall node score. node with the highest score wins. 
+
+pod affinity - pods should run on the same node.
+anti pod affinity - pods should not run on the same node. 
+
+topologyKey - scope or boundary of where these rules should be applied. 
+
+narrower the scope, more precise the placement control. 
+
+hostname = node
+zone = availability zone
+region = geographic region
+
+spec:
+  affinity:
+    podAffinity: #another pod should be running with the same value
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+          - key: role
+            operator: In
+            values:
+            - backend
+          topologyKey: kubernetes.io/hostname
+          
+if one pod ends up on worker-1, then pod with this spec will end up on the same node.
+
+spec:
+  affinity:
+    podAntiAffinity: #another pod should be running with the same value
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+          - key: role
+            operator: In
+            values:
+            - backend
+          topologyKey: kubernetes.io/hostname
+
+## 128. Kubernetes Storage
+
+What is Ephemeral Storage
+- does not survive restarts. used as required. discarded after use. EmptyDir - good example, which serves as temp directory for apps. it is a scratch space. check pointing for long computation. emptyDir.medium field set to memory will give us cache like file system. 
+
+
+What is Persistent Storage
+
+- storage persists removal of container. 
+
+
+storage class - k3ks has persistent storage backed by host (local-path)
+pv - persistent volume is created from storage class. persistent volume. 
+pvc - persistent volume claim is made and assigned to pv. 
+
+claims must be in the same namespace as pods. 
+
+manual - create pv, and the pvc ourselves. 
+dynamic - create pvc against storage class, which creates pv. will be in pending until it is used. yaml will not contain volume name. 
+
+they differ in reclaim policies. 
+
+- delete - default. deleted when claim is released. default when pv is dynamically created.
+- recycle - scrub operation
+- retain - data is kept until the volume is deleted. default when pv is manually created. 
+
+Most important - local-path storage will persist only on the node the the pod starts the first time. if the pod starts on a different node, the data is gone. use node selectors to work around this. backend storage does not traverse nodes. 
+
+
+What is Rook
+- open source persistent storage offering. rook.io. distributed storage systems into self managing, scaling and healing storage system. Rook (specifically Rook-Ceph) is the Kubernetes operator that installs, configures and manages Ceph to expose those storage types as Kubernetes PersistentVolumes. https://rook.io/docs/rook/v1.12/Getting-Started/quickstart
+
+What is Ceph
+- Ceph, by contrast, is the distributed storage platform itself. It provides object, block and file storage in one unified system, and is widely used as a backend for cloud-native and virtualized workloads. 
+
+The relationship between Rook and Ceph (Rook is designed to ease the orchestration of Ceph in Kubernetes)
+
+
+## 132. Kubernetes StatefulSets
+
+The purpose of StatefulSets
+
+- workload api objects that are used to manage stateful applications. deployments are typically stateless - applying a volume makes is somewhat stateful. 
+- stateful sets have no concept of replicasets. maintain stick identity for pods. pods create their own pvc. 3 pods will result in 3 pvcs and 3 volumes. 
+- stable unique network identifiers
+- stable persistent storage
+- ordered graceful deployment and scaling
+- ordered automatic rolling updates
+
+stateful sets cannot be created by cli. deployment and statefulset have mostly identical spec. serviceName gives stable network id. kind: StatefulSet. 
+
+pods have statefulsetname-0, -1, -2 etc. 
+
+partition is a way to restrict updates to certain pods. partition: 2 means only pods with "-2" or greater will be updated. 
+
+deleting a pod in statefulset will recreate the pod. 
+
+if the entire statefulset is deleted, pvcs and pvs still exist. recreating the statefulset will reuse pvs and pvcs. 
+
+The difference/similarities between StatefulSets and Deployments
+
+The StatefulSet relation/dependency on Services for naming and how this can be used to provide stable names, for the StatefulSet
+
+## 135. Kubernetes NetworkPolicies
+
