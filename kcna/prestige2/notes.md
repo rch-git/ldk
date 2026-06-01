@@ -745,3 +745,74 @@ The StatefulSet relation/dependency on Services for naming and how this can be u
 
 ## 135. Kubernetes NetworkPolicies
 
+network policies can restrict ingress (incoming traffic inside the cluster) or egress (outgoing traffic) to pods. one way to do this is by matching labels.
+
+## 138. Kubernetes Ingress
+
+has a limited role in kcna. api gateway is more widely used.
+
+manage external access to services inside the cluster.
+
+ingress controller receives and forwards the traffic. also responsible for securing and controlling traffic.
+
+multiple routing rules into a single resource. better for scaling. can provide ssl and tls termination. centralized point of management.
+
+typically clusters do not contain ingress controller. public cloud providers may include ingress offerings that integrate with provider.
+
+kubernetes-ingress - F5 nginx open source implementation
+ingress-nginx - retired. this is an open source impelmentation that is no longer receiving updates.
+
+ingress API in kubernetes is not deprecated. it is in GA - general availability. gateway api is considered a successor, but ingress API is not deprecated.
+
+helm is the easiest way to get kubernetes-ingress.
+
+`kubectl get ingressclass`
+
+in managed k8s environments the default is set.
+
+pod label -> service (selector) -> endpoint slice.
+
+`kubectl create ingress minimal-ingress --class=nginx-example ==rule="/testpath*=test:80" -o yaml --dry-run=client`
+
+## 143. Kubernetes Gateway API
+
+L4 and L7 routing. next gen successor to ingress api.
+
+generic, role oriented.
+
+concers: path and hostname routing, tls termination.
+
+gateway api splits configuration into management chuncks across resources.
+
+platform teams define controllers, app teams define how traffic routed.
+
+gateway class - defined which controller will implement dateway. nginx, envoy.
+
+gateway - namespaced resource. network entry point. port, protocol, tls, makes use of gateway class.
+
+httproute - namespaced. http or grpc routing rules. match condition and backend ref to services. parent ref links to one or more backend services.
+
+policy filter - optional object.
+
+expressive and consistent. supports multi controller setup as standard. no relying on controller specific annotations.
+
+role oriented design.
+
+platform team - install and control gateway controllers ex - nginx
+
+cluster operator - own gateway objects. specify LBs, IPs, ports hostnames, tls settings.
+
+app teams - they create HTTPRoute resources. they use parentRefs.
+
+security team - cluster wide policy. referencegrants.
+
+setup helm
+install gateway api crds
+install nginx gateway controller
+deploy demo backends
+create a dateway
+create httproutes
+test routing
+add tls termination
+httpp -> https redirect
+weight routing
