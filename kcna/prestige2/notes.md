@@ -190,17 +190,17 @@ Container orchestration automates the management of containers — provisioning,
 ### Control Plane (Master)
 Where cluster management components run.
 
-- **Low-level Runtime**: runc (OCI reference). Alternatives: crun, Kata, gVisor.
-- **High-level Runtime**: **containerd** (manages full lifecycle: pull, store, run, networking).
-- **kubelet**: Agent on every node (including control plane).
+- **Low-level Runtime**: runc (OCI reference). Responsible for spawning and running containers. Interacts with low level linux components like namespace and Cgroups. Reference implementation of a low level runtime is - runc. Alternatives: crun, Kata, gVisor.
+- **High-level Runtime**: **containerd** (manages full lifecycle: pull, store, run, networking). Donated by Docker. 
+- **kubelet**: Agent on every node (including control plane). It is not exclusive to kubernetes control plane. Primary function is to maintain pods, it makes use of pod spec. It also runs the core components in control plane. It can receive pod specifications in various ways - api call, or by monitoring directory - `/etc/kubernetes/manifests`. It creates static pods. 
 - **Static Pods**: Defined via manifest files on disk.
 
 **Key Control Plane Components**:
-- **etcd**: Strongly consistent key-value store (source of truth). Use odd number of nodes + Raft consensus.
-- **kube-apiserver**: Central hub. All communication goes through its REST API.
-- **kube-scheduler**: Assigns pods to nodes.
-- **kube-controller-manager**: Control loops that move cluster toward desired state.
-- **kube-proxy**: Handles networking rules (TCP/UDP/SCTP). Runs on all nodes.
+- **etcd**: Strongly consistent distributed key-value store (source of truth). Use odd number of nodes + Raft consensus. This is a static pod. 
+- **kube-apiserver**: Central hub. All communication goes through its REST API. Static pod. Provides restful api. All data is stored in etcd (registering pods) in a kubernetes cluster. kubelet also tasks to api server when creating pods. kubectl communicates with kube api server. This is a static pod.
+- **kube-scheduler**: Control plane process. Assigns pods to nodes. This is a static pod. 
+- **kube-controller-manager**: Control loops that move cluster toward desired state. Attempt to move the controller to its desired state. replication controller, node controller, deployment controller. This is a static pod. 
+- **kube-proxy**: Handles networking rules (TCP/UDP/SCTP). Runs on all nodes. Communicates with api server. This is a normal pod. 
 - **CoreDNS**: In-cluster DNS server.
 - **Cloud Controller Manager**: Cloud provider integration (load balancers, etc.).
 
