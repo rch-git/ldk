@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: nginxpod
+  name: nginxpod
+spec:
+  containers:
+  - image: nginx
+    name: nginxpod
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: ubuntupod
+  name: ubuntupod
+spec:
+  containers:
+  - args:
+    - sleep
+    - infinity
+    image: ubuntu
+    name: ubuntupod
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
