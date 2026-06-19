@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: ubuntupod
+  name: ubuntupod
+  namespace: myns
+spec:
+  containers:
+  - image: ubuntu
+    name: ubuntupod
+    args:
+    - sleeep # introduce a typo in the command
+    - infinity
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

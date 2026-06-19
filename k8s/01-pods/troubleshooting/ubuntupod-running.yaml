@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: ubuntupod
+  name: ubuntupod
+  namespace: myns
+spec:
+  #schedulerName: none # this scheduler does not exist
+  containers:
+  - args:
+    - /bin/sh
+    - -c
+    - touch /tmp/running; ps -p 1 -o lstart=; while [ -f /tmp/running ]; do sleep 2; done
+    image: ubuntu
+    name: ubuntupod
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

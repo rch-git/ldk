@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: ubuntupod
+  name: ubuntupod
+  namespace: myns
+spec:
+  #schedulerName: none # this scheduler does not exist
+  containers:
+  - args:
+    - sleep
+    - infinity
+    image: ubuntuXY # this will create the ContainerCreating phase
+    name: ubuntupod
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
