@@ -104,3 +104,4 @@ alias lcl='cd ~/git/thelocalhoster'
 alias alin='cd ~/git/alinuxuser'
 alias ablg='cd ~/git/blog.alinuxuser.com'
 alias agal='cd ~/git/gallery.alinuxuser.com'
+export PATH=$PATH:$HOME/go/bin
