@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: loggerdep
+  name: loggerdep
+  namespace: myns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: loggerdep
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: loggerdep
+    spec:
+      containers:
+      - command:
+        - /bin/sh
+        - -c
+        - while true; do date +"%Y-%m-%d-%H:%M:%S - Hello from $NODE_NAME"; sleep
+          30; done
+        image: alpine
+        name: alpine
+        resources: {}
+status: {}

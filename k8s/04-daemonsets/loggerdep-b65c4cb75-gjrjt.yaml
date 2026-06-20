@@ -1,0 +1,147 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2026-06-20T16:23:55Z"
+  generateName: loggerdep-b65c4cb75-
+  generation: 1
+  labels:
+    app: loggerdep
+    pod-template-hash: b65c4cb75
+  name: loggerdep-b65c4cb75-gjrjt
+  namespace: myns
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: loggerdep-b65c4cb75
+    uid: d8e27ca8-2f40-4149-ad90-f0d68d7b8bff
+  resourceVersion: "18671"
+  uid: 23e87b74-3459-4006-b4e4-3e83234558e5
+spec:
+  containers:
+  - command:
+    - /bin/sh
+    - -c
+    - while true; do date +"%Y-%m-%d-%H:%M:%S - Hello from $NODE_NAME"; sleep 30;
+      done
+    image: alpine
+    imagePullPolicy: Always
+    name: alpine
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-phkcf
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: klc-worker
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-phkcf
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2026-06-20T16:23:59Z"
+    observedGeneration: 1
+    status: "True"
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2026-06-20T16:23:55Z"
+    observedGeneration: 1
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2026-06-20T16:23:59Z"
+    observedGeneration: 1
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2026-06-20T16:23:59Z"
+    observedGeneration: 1
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2026-06-20T16:23:55Z"
+    observedGeneration: 1
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://8653fec3ec8cbb7e06c1d2842c1f5415183fb042302a283b12740ffb7483acec
+    image: docker.io/library/alpine:latest
+    imageID: docker.io/library/alpine@sha256:28bd5fe8b56d1bd048e5babf5b10710ebe0bae67db86916198a6eec434943f8b
+    lastState: {}
+    name: alpine
+    ready: true
+    resources: {}
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2026-06-20T16:23:58Z"
+    user:
+      linux:
+        gid: 0
+        supplementalGroups:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+        - 6
+        - 10
+        - 11
+        - 20
+        - 26
+        - 27
+        uid: 0
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-phkcf
+      readOnly: true
+      recursiveReadOnly: Disabled
+  hostIP: 172.18.0.2
+  hostIPs:
+  - ip: 172.18.0.2
+  observedGeneration: 1
+  phase: Running
+  podIP: 10.244.1.36
+  podIPs:
+  - ip: 10.244.1.36
+  qosClass: BestEffort
+  startTime: "2026-06-20T16:23:55Z"
