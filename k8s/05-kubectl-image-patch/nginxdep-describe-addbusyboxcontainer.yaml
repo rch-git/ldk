@@ -1,0 +1,77 @@
+Name:                   nginxdep
+Namespace:              myns
+CreationTimestamp:      Sat, 20 Jun 2026 13:26:55 -0500
+Labels:                 app=nginxdep
+Annotations:            deployment.kubernetes.io/revision: 7
+Selector:               app=nginxdep
+Replicas:               3 desired | 3 updated | 3 total | 3 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  app=nginxdep
+  Containers:
+   ubuntucontainer:
+    Image:      ubuntu:24.04
+    Port:       <none>
+    Host Port:  <none>
+    Args:
+      sleep
+      infinity
+    Environment:  <none>
+    Mounts:       <none>
+   nginxcontainer:
+    Image:        nginx
+    Port:         <none>
+    Host Port:    <none>
+    Environment:  <none>
+    Mounts:       <none>
+   busyboxcontainer1:
+    Image:      busybox
+    Port:       <none>
+    Host Port:  <none>
+    Args:
+      sleep
+      infinity
+    Environment:   <none>
+    Mounts:        <none>
+  Volumes:         <none>
+  Node-Selectors:  <none>
+  Tolerations:     <none>
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+  Progressing    True    NewReplicaSetAvailable
+OldReplicaSets:  nginxdep-5f4d9669f8 (0/0 replicas created), nginxdep-67bc8846d9 (0/0 replicas created), nginxdep-77d549b97b (0/0 replicas created), nginxdep-6cdf86cb68 (0/0 replicas created), nginxdep-67cfd488b6 (0/0 replicas created)
+NewReplicaSet:   nginxdep-65cd9f4f74 (3/3 replicas created)
+Events:
+  Type    Reason             Age                From                   Message
+  ----    ------             ----               ----                   -------
+  Normal  ScalingReplicaSet  56m                deployment-controller  Scaled up replica set nginxdep-77d549b97b from 0 to 1
+  Normal  ScalingReplicaSet  56m                deployment-controller  Scaled up replica set nginxdep-77d549b97b from 1 to 2
+  Normal  ScalingReplicaSet  56m                deployment-controller  Scaled down replica set nginxdep-67bc8846d9 from 2 to 1
+  Normal  ScalingReplicaSet  56m                deployment-controller  Scaled up replica set nginxdep-77d549b97b from 2 to 3
+  Normal  ScalingReplicaSet  56m                deployment-controller  Scaled down replica set nginxdep-67bc8846d9 from 1 to 0
+  Normal  ScalingReplicaSet  37m (x2 over 67m)  deployment-controller  Scaled up replica set nginxdep-67bc8846d9 from 0 to 1
+  Normal  ScalingReplicaSet  37m (x2 over 67m)  deployment-controller  Scaled up replica set nginxdep-67bc8846d9 from 1 to 2
+  Normal  ScalingReplicaSet  37m                deployment-controller  Scaled down replica set nginxdep-77d549b97b from 3 to 2
+  Normal  ScalingReplicaSet  37m (x2 over 67m)  deployment-controller  Scaled up replica set nginxdep-67bc8846d9 from 2 to 3
+  Normal  ScalingReplicaSet  37m                deployment-controller  Scaled down replica set nginxdep-77d549b97b from 2 to 1
+  Normal  ScalingReplicaSet  37m                deployment-controller  Scaled down replica set nginxdep-77d549b97b from 1 to 0
+  Normal  ScalingReplicaSet  33m                deployment-controller  Scaled up replica set nginxdep-6cdf86cb68 from 0 to 1
+  Normal  ScalingReplicaSet  33m (x2 over 56m)  deployment-controller  Scaled down replica set nginxdep-67bc8846d9 from 3 to 2
+  Normal  ScalingReplicaSet  33m                deployment-controller  Scaled up replica set nginxdep-6cdf86cb68 from 1 to 2
+  Normal  ScalingReplicaSet  33m (x3 over 33m)  deployment-controller  (combined from similar events): Scaled down replica set nginxdep-67bc8846d9 from 1 to 0
+  Normal  ScalingReplicaSet  14m                deployment-controller  Scaled up replica set nginxdep-67cfd488b6 from 0 to 1
+  Normal  ScalingReplicaSet  14m                deployment-controller  Scaled down replica set nginxdep-6cdf86cb68 from 3 to 2
+  Normal  ScalingReplicaSet  14m                deployment-controller  Scaled up replica set nginxdep-67cfd488b6 from 1 to 2
+  Normal  ScalingReplicaSet  14m                deployment-controller  Scaled down replica set nginxdep-6cdf86cb68 from 2 to 1
+  Normal  ScalingReplicaSet  14m                deployment-controller  Scaled up replica set nginxdep-67cfd488b6 from 2 to 3
+  Normal  ScalingReplicaSet  14m                deployment-controller  Scaled down replica set nginxdep-6cdf86cb68 from 1 to 0
+  Normal  ScalingReplicaSet  13s                deployment-controller  Scaled up replica set nginxdep-65cd9f4f74 from 0 to 1
+  Normal  ScalingReplicaSet  8s                 deployment-controller  Scaled down replica set nginxdep-67cfd488b6 from 3 to 2
+  Normal  ScalingReplicaSet  8s                 deployment-controller  Scaled up replica set nginxdep-65cd9f4f74 from 1 to 2
+  Normal  ScalingReplicaSet  3s                 deployment-controller  Scaled down replica set nginxdep-67cfd488b6 from 2 to 1
+  Normal  ScalingReplicaSet  3s                 deployment-controller  Scaled up replica set nginxdep-65cd9f4f74 from 2 to 3
+  Normal  ScalingReplicaSet  0s                 deployment-controller  Scaled down replica set nginxdep-67cfd488b6 from 1 to 0

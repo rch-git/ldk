@@ -1,0 +1,52 @@
+Name:             nginxpod
+Namespace:        myns
+Priority:         0
+Service Account:  default
+Node:             klc-worker/172.18.0.2
+Start Time:       Sat, 20 Jun 2026 12:21:33 -0500
+Labels:           run=nginxpod
+Annotations:      <none>
+Status:           Running
+IP:               10.244.1.39
+IPs:
+  IP:  10.244.1.39
+Containers:
+  nginxcontainer:
+    Container ID:   containerd://6247befb688ff34200d99d0d1b2348a8b362812860da936f80eb925601aeb089
+    Image:          nginx
+    Image ID:       docker.io/library/nginx@sha256:42f2d24ae18df9b5251d1cc45548085656d2335e9338fd150a24e415462d151f
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Sat, 20 Jun 2026 12:21:35 -0500
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-2p57q (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-2p57q:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  35s   default-scheduler  Successfully assigned myns/nginxpod to klc-worker
+  Normal  Pulling    35s   kubelet            spec.containers{nginxcontainer}: Pulling image "nginx"
+  Normal  Pulled     34s   kubelet            spec.containers{nginxcontainer}: Successfully pulled image "nginx" in 1.423s (1.423s including waiting). Image size: 63132582 bytes.
+  Normal  Created    34s   kubelet            spec.containers{nginxcontainer}: Container created
+  Normal  Started    33s   kubelet            spec.containers{nginxcontainer}: Container started

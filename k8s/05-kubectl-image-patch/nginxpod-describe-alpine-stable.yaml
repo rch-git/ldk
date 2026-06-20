@@ -1,0 +1,73 @@
+Name:             nginxpod
+Namespace:        myns
+Priority:         0
+Service Account:  default
+Node:             klc-worker/172.18.0.2
+Start Time:       Sat, 20 Jun 2026 12:21:33 -0500
+Labels:           run=nginxpod
+Annotations:      <none>
+Status:           Running
+IP:               10.244.1.39
+IPs:
+  IP:  10.244.1.39
+Containers:
+  nginxcontainer:
+    Container ID:   containerd://bbcd32d5055bfcf122cae8c6d86d0089f61a726b71d5aecb826771ff198ffbea
+    Image:          nginx:stable
+    Image ID:       docker.io/library/nginx@sha256:ef9984ffb35887404165e7060a4c7d059260c798b9912f48e6d3e236f6ec24a7
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Sat, 20 Jun 2026 12:30:07 -0500
+    Last State:     Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Sat, 20 Jun 2026 12:27:37 -0500
+      Finished:     Sat, 20 Jun 2026 12:30:06 -0500
+    Ready:          True
+    Restart Count:  4
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-2p57q (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-2p57q:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason     Age                    From               Message
+  ----     ------     ----                   ----               -------
+  Normal   Pulling    11m                    kubelet            spec.containers{nginxcontainer}: Pulling image "nginx"
+  Normal   Scheduled  11m                    default-scheduler  Successfully assigned myns/nginxpod to klc-worker
+  Normal   Pulled     11m                    kubelet            spec.containers{nginxcontainer}: Successfully pulled image "nginx" in 1.423s (1.423s including waiting). Image size: 63132582 bytes.
+  Normal   Pulling    9m51s                  kubelet            spec.containers{nginxcontainer}: Pulling image "alipne:slim"
+  Warning  Failed     9m50s                  kubelet            spec.containers{nginxcontainer}: Failed to pull image "alipne:slim": failed to pull and unpack image "docker.io/library/alipne:slim": failed to resolve reference "docker.io/library/alipne:slim": pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed
+  Normal   BackOff    9m50s                  kubelet            spec.containers{nginxcontainer}: Back-off pulling image "alipne:slim"
+  Normal   BackOff    9m6s (x2 over 9m35s)   kubelet            spec.containers{nginxcontainer}: Back-off pulling image "alipne-slim"
+  Normal   Pulling    8m22s (x3 over 9m36s)  kubelet            spec.containers{nginxcontainer}: Pulling image "alipne-slim"
+  Warning  Failed     8m20s (x3 over 9m35s)  kubelet            spec.containers{nginxcontainer}: Failed to pull image "alipne-slim": failed to pull and unpack image "docker.io/library/alipne-slim:latest": failed to resolve reference "docker.io/library/alipne-slim:latest": pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed
+  Normal   Pulling    6m50s (x3 over 7m31s)  kubelet            spec.containers{nginxcontainer}: Pulling image "alpine-slim"
+  Warning  Failed     6m48s (x3 over 7m30s)  kubelet            spec.containers{nginxcontainer}: Failed to pull image "alpine-slim": failed to pull and unpack image "docker.io/library/alpine-slim:latest": failed to resolve reference "docker.io/library/alpine-slim:latest": pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed
+  Warning  Failed     6m48s (x7 over 9m50s)  kubelet            spec.containers{nginxcontainer}: Error: ErrImagePull
+  Warning  Failed     6m23s (x6 over 9m50s)  kubelet            spec.containers{nginxcontainer}: Error: ImagePullBackOff
+  Normal   BackOff    6m23s (x3 over 7m5s)   kubelet            spec.containers{nginxcontainer}: Back-off pulling image "alpine-slim"
+  Normal   Pulled     6m10s                  kubelet            spec.containers{nginxcontainer}: Successfully pulled image "alpine" in 1.345s (1.345s including waiting). Image size: 3857242 bytes.
+  Normal   Pulling    5m58s (x2 over 6m12s)  kubelet            spec.containers{nginxcontainer}: Pulling image "alpine"
+  Warning  BackOff    5m57s (x4 over 8m55s)  kubelet            spec.containers{nginxcontainer}: Back-off restarting failed container nginxcontainer in pod nginxpod_myns(40c5d776-b847-4f63-bb03-888d9f9703af)
+  Normal   Started    5m57s (x3 over 11m)    kubelet            spec.containers{nginxcontainer}: Container started
+  Normal   Created    5m57s (x3 over 11m)    kubelet            spec.containers{nginxcontainer}: Container created
+  Normal   Pulled     5m57s                  kubelet            spec.containers{nginxcontainer}: Successfully pulled image "alpine" in 773ms (773ms including waiting). Image size: 3857242 bytes.
+  Normal   Killing    0s (x3 over 9m52s)     kubelet            spec.containers{nginxcontainer}: Container nginxcontainer definition changed, will be restarted

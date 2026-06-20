@@ -1,0 +1,39 @@
+Name:                   nginxdep
+Namespace:              myns
+CreationTimestamp:      Sat, 20 Jun 2026 13:26:55 -0500
+Labels:                 app=nginxdep
+Annotations:            deployment.kubernetes.io/revision: 2
+Selector:               app=nginxdep
+Replicas:               3 desired | 3 updated | 3 total | 3 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  app=nginxdep
+  Containers:
+   nginxcontainer:
+    Image:         nginx
+    Port:          <none>
+    Host Port:     <none>
+    Environment:   <none>
+    Mounts:        <none>
+  Volumes:         <none>
+  Node-Selectors:  <none>
+  Tolerations:     <none>
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+  Progressing    True    NewReplicaSetAvailable
+OldReplicaSets:  nginxdep-5f4d9669f8 (0/0 replicas created)
+NewReplicaSet:   nginxdep-67bc8846d9 (3/3 replicas created)
+Events:
+  Type    Reason             Age    From                   Message
+  ----    ------             ----   ----                   -------
+  Normal  ScalingReplicaSet  6m3s   deployment-controller  Scaled up replica set nginxdep-5f4d9669f8 from 0 to 3
+  Normal  ScalingReplicaSet  3m26s  deployment-controller  Scaled up replica set nginxdep-67bc8846d9 from 0 to 1
+  Normal  ScalingReplicaSet  3m25s  deployment-controller  Scaled down replica set nginxdep-5f4d9669f8 from 3 to 2
+  Normal  ScalingReplicaSet  3m25s  deployment-controller  Scaled up replica set nginxdep-67bc8846d9 from 1 to 2
+  Normal  ScalingReplicaSet  3m23s  deployment-controller  Scaled down replica set nginxdep-5f4d9669f8 from 2 to 1
+  Normal  ScalingReplicaSet  3m23s  deployment-controller  Scaled up replica set nginxdep-67bc8846d9 from 2 to 3
+  Normal  ScalingReplicaSet  3m21s  deployment-controller  Scaled down replica set nginxdep-5f4d9669f8 from 1 to 0

@@ -1,0 +1,9 @@
+spec:
+  template:
+    spec:
+      containers:
+      - image: ubuntu
+        name: ubuntucontainer
+        args:
+        - sleep
+        - infinity

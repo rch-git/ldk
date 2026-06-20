@@ -1,0 +1,6 @@
+spec:
+  template:
+    spec:
+      containers:
+      - image: ubuntu:24.04
+        name: ubuntucontainer # merge uses name as the key
