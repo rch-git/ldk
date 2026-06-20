@@ -11,9 +11,16 @@ spec:
   - args:
     - /bin/sh
     - -c
-    - for i in $(seq 0 1 1000000); do echo "$i"; sleep 2; done
+    - for i in $(seq 0 1 1000000); do echo "$i"; sleep 1; done
     image: ubuntu
-    name: ubuntupod
+    name: ubuntupod1
+    resources: {}
+  - args:
+    - /bin/sh
+    - -c
+    - sleep 30; for i in $(seq 0 1 1000000); do echo "$i"; sleep 1; done
+    image: ubuntu
+    name: ubuntupod2
     resources: {}
   dnsPolicy: ClusterFirst
   restartPolicy: Always
