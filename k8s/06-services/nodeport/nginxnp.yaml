@@ -11,5 +11,6 @@ spec:
     targetPort: 80
   selector:
     app: nginxdep
+  type: NodePort
 status:
   loadBalancer: {}
