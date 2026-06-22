@@ -5,6 +5,7 @@ metadata:
     app: nginxdep
   name: nginxdep
 spec:
+  clusterIP: None
   ports:
   - port: 8080
     protocol: TCP
