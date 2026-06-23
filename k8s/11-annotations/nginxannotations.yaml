@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginxdep
+  annotations: 
+    company.org/owner: "platform-team"
+    company.org/ticket: "OPS-1234"
+  name: nginxdep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginxdep
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: nginxdep
+      annotations:
+        company.org/note: "This is a pod annotation"
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        resources: {}
+status: {}
