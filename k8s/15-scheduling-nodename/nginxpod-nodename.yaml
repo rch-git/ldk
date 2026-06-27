@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: nginxpod-nodename
+  name: nginxpod-nodename
+spec:
+  nodeName: klc-worker
+  containers:
+  - image: nginx
+    name: nginxpod-nodename
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
