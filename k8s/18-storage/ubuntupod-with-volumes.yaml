@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: ubuntupod-with-volumes
+  name: ubuntupod-with-volumes
+spec:
+  nodeSelector:
+    kubernetes.io/hostname: klc-worker
+  containers:
+  - command:
+    - sleep
+    - infinity
+    image: ubuntu
+    name: ubuntupod-with-volumes
+    resources: {}
+    volumeMounts:
+      - mountPath: "/manual"
+        name: manual-volume
+      - mountPath: "/dynamic"
+        name: dynamic-volume
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+  volumes:
+    - name: manual-volume
+      persistentVolumeClaim:
+        claimName: manual-claim
+    - name: dynamic-volume
+      persistentVolumeClaim:
+        claimName: dynamic-claim    
+status: {}

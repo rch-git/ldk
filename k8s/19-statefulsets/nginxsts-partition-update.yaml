@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app: nginxsts
+  name: nginxsts
+spec:
+  serviceName: nginxsts # make this match the statefulset name for endpoint slices, and dns sub domain to work correctly
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginxsts
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      partition: 2 # change the partition so that only the last pod nginxsts-2 gets update when there is an update rolled out
+  template:
+    metadata:
+      labels:
+        app: nginxsts
+    spec:
+      containers:
+      - image: nginx
+        name: nginx

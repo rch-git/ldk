@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: dynamic-claim        # The unique name of your PVC within the namespace
+  #namespace: myns           # Optional: Specify your targeted namespace
+  #labels:
+    #pvc: dynamic-claim           # Optional: Organizational tags
+spec:
+  accessModes:
+    - ReadWriteOnce            # Dictates the mounting node capabilities
+  volumeMode: Filesystem       # Options: Filesystem (default) or Block
+  resources:
+    requests:
+      storage: 1Gi            # The exact capacity of storage requested
+  storageClassName: standard   # Set your custom StorageClass or cloud provisioner name

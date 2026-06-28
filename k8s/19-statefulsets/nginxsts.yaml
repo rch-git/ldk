@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app: nginxsts
+  name: nginxsts
+spec:
+  serviceName: nginxsts # make this match the statefulset name for endpoint slices, and dns sub domain to work correctly
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginxsts
+  template:
+    metadata:
+      labels:
+        app: nginxsts
+    spec:
+      containers:
+      - image: nginx
+        name: nginx

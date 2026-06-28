@@ -1,0 +1,66 @@
+addressType: IPv4
+apiVersion: discovery.k8s.io/v1
+endpoints:
+- addresses:
+  - 10.244.1.14
+  conditions:
+    ready: true
+    serving: true
+    terminating: false
+  hostname: nginxsts-2
+  nodeName: klc-worker
+  targetRef:
+    kind: Pod
+    name: nginxsts-2
+    namespace: myns
+    uid: cf7d5155-9b79-436e-b5ee-ab0d19a46669
+- addresses:
+  - 10.244.2.5
+  conditions:
+    ready: true
+    serving: true
+    terminating: false
+  hostname: nginxsts-0
+  nodeName: klc-worker2
+  targetRef:
+    kind: Pod
+    name: nginxsts-0
+    namespace: myns
+    uid: 6b3f83f5-cee5-4288-a7a7-9354327ae5e9
+- addresses:
+  - 10.244.1.13
+  conditions:
+    ready: true
+    serving: true
+    terminating: false
+  hostname: nginxsts-1
+  nodeName: klc-worker
+  targetRef:
+    kind: Pod
+    name: nginxsts-1
+    namespace: myns
+    uid: 1670d485-905d-4b3d-a35e-a18f3d962448
+kind: EndpointSlice
+metadata:
+  annotations:
+    endpoints.kubernetes.io/last-change-trigger-time: "2026-06-28T17:23:03Z"
+  creationTimestamp: "2026-06-28T17:23:03Z"
+  generateName: nginxsts-
+  generation: 1
+  labels:
+    app: nginxsts
+    endpointslice.kubernetes.io/managed-by: endpointslice-controller.k8s.io
+    kubernetes.io/service-name: nginxsts
+    service.kubernetes.io/headless: ""
+  name: nginxsts-2rj6n
+  namespace: myns
+  ownerReferences:
+  - apiVersion: v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: Service
+    name: nginxsts
+    uid: 2bfab44b-b82e-4b5c-a7bc-51615f7b87e9
+  resourceVersion: "947554"
+  uid: 09f58527-44fb-4b3b-b82a-be155962d535
+ports: null

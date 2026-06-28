@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: manual-pv-0001
+  labels:
+    type: local
+spec:
+  storageClassName: standard
+  capacity:
+    storage: 1Gi  # Total size of the volume
+  accessModes:
+    - ReadWriteOnce  # Can be ReadWriteOnce, ReadOnlyMany, or ReadWriteMany
+  hostPath:
+    path: "/var/lib/rancher/k3s/storage/manual-pv-0001"  # Path on the host node. this path is used by the rancher storage class.
+    type: DirectoryOrCreate # create directory on the backend if required
