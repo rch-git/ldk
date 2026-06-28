@@ -1,0 +1,37 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: myingress-app
+spec:
+  ingressClassName: nginx # can be commented out if the default is set.
+  tls:
+  - hosts:
+    - myingress-app.local
+    secretName: myingress-app-tls-secret
+  rules:
+  - host: myingress-app.local
+    http:
+      paths:
+      - backend:
+          service:
+            name: nginx-frontend
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+      - backend:
+          service:
+            name: nginx-api
+            port:
+              number: 80
+        path: /api
+        pathType: Prefix
+      - backend:
+          service:
+            name: nginx-admin
+            port:
+              number: 80
+        path: /admin
+        pathType: Prefix  
+status:
+  loadBalancer: {}

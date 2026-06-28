@@ -1,0 +1,43 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"networking.k8s.io/v1","kind":"Ingress","metadata":{"annotations":{},"name":"myingress-app","namespace":"myns"},"spec":{"ingressClassName":"nginx","rules":[{"host":"myingress-app.local","http":{"paths":[{"backend":{"service":{"name":"nginx-frontend","port":{"number":80}}},"path":"/","pathType":"Prefix"},{"backend":{"service":{"name":"nginx-api","port":{"number":80}}},"path":"/api","pathType":"Prefix"},{"backend":{"service":{"name":"nginx-admin","port":{"number":80}}},"path":"/admin","pathType":"Prefix"}]}}]},"status":{"loadBalancer":{}}}
+  creationTimestamp: "2026-06-28T21:35:58Z"
+  generation: 1
+  name: myingress-app
+  namespace: myns
+  resourceVersion: "972482"
+  uid: 72ebdb8d-2588-4757-bd9b-9918f41b3c49
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: myingress-app.local
+    http:
+      paths:
+      - backend:
+          service:
+            name: nginx-frontend
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+      - backend:
+          service:
+            name: nginx-api
+            port:
+              number: 80
+        path: /api
+        pathType: Prefix
+      - backend:
+          service:
+            name: nginx-admin
+            port:
+              number: 80
+        path: /admin
+        pathType: Prefix
+status:
+  loadBalancer:
+    ingress:
+    - ip: 172.18.0.5

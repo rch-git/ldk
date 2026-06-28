@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: nginx-admin
+  name: nginx-admin
+spec:
+  containers:
+  - image: spurin/nginx-debug
+    name: nginx-admin
+    ports:
+    - containerPort: 80
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

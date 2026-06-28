@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: IngressClass
+metadata:
+  annotations:
+    ingressclass.kubernetes.io/is-default-class: "true"
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"networking.k8s.io/v1","kind":"IngressClass","metadata":{"annotations":{"ingressclass.kubernetes.io/is-default-class":"true","meta.helm.sh/release-name":"nginx-ingress","meta.helm.sh/release-namespace":"nginx-ingress"},"creationTimestamp":"2026-06-28T20:28:58Z","generation":1,"labels":{"app.kubernetes.io/instance":"nginx-ingress","app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"nginx-ingress","app.kubernetes.io/version":"5.5.1","helm.sh/chart":"nginx-ingress-2.6.1"},"name":"nginx","resourceVersion":"965781","uid":"0480a6b7-4075-4e6d-9a78-05bd4ebc0877"},"spec":{"controller":"nginx.org/ingress-controller"}}
+    meta.helm.sh/release-name: nginx-ingress
+    meta.helm.sh/release-namespace: nginx-ingress
+  creationTimestamp: "2026-06-28T20:28:58Z"
+  generation: 1
+  labels:
+    app.kubernetes.io/instance: nginx-ingress
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: nginx-ingress
+    app.kubernetes.io/version: 5.5.1
+    helm.sh/chart: nginx-ingress-2.6.1
+  name: nginx
+  resourceVersion: "968251"
+  uid: 0480a6b7-4075-4e6d-9a78-05bd4ebc0877
+spec:
+  controller: nginx.org/ingress-controller
