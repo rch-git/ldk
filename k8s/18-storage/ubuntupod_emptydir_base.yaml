@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: ubuntupod_emptydir
+  name: ubuntupod_emptydir
+spec:
+  containers:
+  - command:
+    - sleep
+    - infinity
+    image: ubuntu
+    name: ubuntupod_emptydir
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
