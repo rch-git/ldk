@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: pod-affinity-frontend-pod
+  name: pod-affinity-frontend-pod
+spec:
+  affinity:
+    podAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+        matchExpressions:
+        - key: role
+          operator: In
+          values:
+          - backend
+      topologyKey: "kubernetes.io/hostname"
+  containers:
+  - image: nginx
+    name: pod-affinity-frontend-pod
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always

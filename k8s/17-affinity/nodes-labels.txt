@@ -1,0 +1,4 @@
+NAME                STATUS   ROLES           AGE     VERSION   LABELS
+klc-control-plane   Ready    control-plane   7d10h   v1.35.0   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=klc-control-plane,kubernetes.io/os=linux,node-role.kubernetes.io/control-plane=,node.kubernetes.io/exclude-from-external-load-balancers=
+klc-worker          Ready    <none>          7d10h   v1.35.0   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,disktype=ssd,kubernetes.io/arch=amd64,kubernetes.io/hostname=klc-worker,kubernetes.io/os=linux
+klc-worker2         Ready    <none>          7d10h   v1.35.0   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=klc-worker2,kubernetes.io/os=linux

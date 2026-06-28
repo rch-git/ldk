@@ -1,0 +1,77 @@
+Name:               klc-control-plane
+Roles:              control-plane
+Labels:             beta.kubernetes.io/arch=amd64
+                    beta.kubernetes.io/os=linux
+                    kubernetes.io/arch=amd64
+                    kubernetes.io/hostname=klc-control-plane
+                    kubernetes.io/os=linux
+                    node-role.kubernetes.io/control-plane=
+                    node.kubernetes.io/exclude-from-external-load-balancers=
+Annotations:        node.alpha.kubernetes.io/ttl: 0
+                    volumes.kubernetes.io/controller-managed-attach-detach: true
+CreationTimestamp:  Sat, 20 Jun 2026 08:26:34 -0500
+Taints:             node-role.kubernetes.io/control-plane:NoSchedule
+Unschedulable:      false
+Lease:
+  HolderIdentity:  klc-control-plane
+  AcquireTime:     <unset>
+  RenewTime:       Sat, 27 Jun 2026 18:00:04 -0500
+Conditions:
+  Type             Status  LastHeartbeatTime                 LastTransitionTime                Reason                       Message
+  ----             ------  -----------------                 ------------------                ------                       -------
+  MemoryPressure   False   Sat, 27 Jun 2026 17:58:37 -0500   Sat, 20 Jun 2026 08:26:33 -0500   KubeletHasSufficientMemory   kubelet has sufficient memory available
+  DiskPressure     False   Sat, 27 Jun 2026 17:58:37 -0500   Sat, 20 Jun 2026 08:26:33 -0500   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure      False   Sat, 27 Jun 2026 17:58:37 -0500   Sat, 20 Jun 2026 08:26:33 -0500   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready            True    Sat, 27 Jun 2026 17:58:37 -0500   Sat, 20 Jun 2026 08:26:55 -0500   KubeletReady                 kubelet is posting ready status
+Addresses:
+  InternalIP:  172.18.0.3
+  Hostname:    klc-control-plane
+Capacity:
+  cpu:                2
+  ephemeral-storage:  61608748Ki
+  hugepages-1Gi:      0
+  hugepages-2Mi:      0
+  memory:             7553696Ki
+  pods:               110
+Allocatable:
+  cpu:                2
+  ephemeral-storage:  61608748Ki
+  hugepages-1Gi:      0
+  hugepages-2Mi:      0
+  memory:             7553696Ki
+  pods:               110
+System Info:
+  Machine ID:                 7f5c84c6558d43b7918502bc74a5e4f4
+  System UUID:                68a9cbc1-8c83-427a-9398-3881b9fd3021
+  Boot ID:                    6a802e04-4c4e-467b-860b-533aceaceacf
+  Kernel Version:             7.0.0-22-generic
+  OS Image:                   Debian GNU/Linux 12 (bookworm)
+  Operating System:           linux
+  Architecture:               amd64
+  Container Runtime Version:  containerd://2.2.0
+  Kubelet Version:            v1.35.0
+PodCIDR:                      10.244.0.0/24
+PodCIDRs:                     10.244.0.0/24
+ProviderID:                   kind://docker/klc/klc-control-plane
+Non-terminated Pods:          (9 in total)
+  Namespace                   Name                                         CPU Requests  CPU Limits  Memory Requests  Memory Limits  Age
+  ---------                   ----                                         ------------  ----------  ---------------  -------------  ---
+  kube-system                 coredns-7d764666f9-77sz4                     100m (5%)     0 (0%)      70Mi (0%)        170Mi (2%)     7d9h
+  kube-system                 coredns-7d764666f9-nvw59                     100m (5%)     0 (0%)      70Mi (0%)        170Mi (2%)     7d9h
+  kube-system                 etcd-klc-control-plane                       100m (5%)     0 (0%)      100Mi (1%)       0 (0%)         7d9h
+  kube-system                 kindnet-brmkw                                100m (5%)     100m (5%)   50Mi (0%)        50Mi (0%)      7d9h
+  kube-system                 kube-apiserver-klc-control-plane             250m (12%)    0 (0%)      0 (0%)           0 (0%)         7d9h
+  kube-system                 kube-controller-manager-klc-control-plane    200m (10%)    0 (0%)      0 (0%)           0 (0%)         7d9h
+  kube-system                 kube-proxy-wg5cn                             0 (0%)        0 (0%)      0 (0%)           0 (0%)         7d9h
+  kube-system                 kube-scheduler-klc-control-plane             100m (5%)     0 (0%)      0 (0%)           0 (0%)         7d9h
+  local-path-storage          local-path-provisioner-67b8995b4b-jgj6w      0 (0%)        0 (0%)      0 (0%)           0 (0%)         7d9h
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource           Requests    Limits
+  --------           --------    ------
+  cpu                950m (47%)  100m (5%)
+  memory             290Mi (3%)  390Mi (5%)
+  ephemeral-storage  0 (0%)      0 (0%)
+  hugepages-1Gi      0 (0%)      0 (0%)
+  hugepages-2Mi      0 (0%)      0 (0%)
+Events:              <none>

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: test-taint
+  name: test-taint
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-taint
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: test-taint
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        resources: {}
+status: {}

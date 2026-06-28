@@ -1,0 +1,30 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: nginxdep
+spec:
+  selector:
+    matchLabels:
+      app: nginxdep
+  replicas: 1
+  template: 
+    metadata:
+      labels:
+        app: nginxdep
+        run: nginxdep-frontend
+    spec:
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: role
+                operator: In
+                values:
+                - backend
+            topologyKey: "kubernetes.io/hostname"
+      containers:
+      - name: nginxdep
+        image: nginx
+        ports:
+        - containerPort: 80
