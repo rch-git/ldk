@@ -1,0 +1,79 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: GatewayClass
+metadata:
+  annotations:
+    meta.helm.sh/release-name: ngf
+    meta.helm.sh/release-namespace: nginx-gateway
+  creationTimestamp: "2026-06-29T10:20:09Z"
+  generation: 1
+  labels:
+    app.kubernetes.io/instance: ngf
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: nginx-gateway-fabric
+    app.kubernetes.io/version: 2.6.6
+    helm.sh/chart: nginx-gateway-fabric-2.6.6
+  name: nginx
+  resourceVersion: "1041852"
+  uid: 2a8f6f72-4bf5-476c-9771-fae5370978b1
+spec:
+  controllerName: gateway.nginx.org/nginx-gateway-controller
+  parametersRef:
+    group: gateway.nginx.org
+    kind: NginxProxy
+    name: ngf-proxy-config
+    namespace: nginx-gateway
+status:
+  conditions:
+  - lastTransitionTime: "2026-06-29T10:20:13Z"
+    message: The GatewayClass is accepted
+    observedGeneration: 1
+    reason: Accepted
+    status: "True"
+    type: Accepted
+  - lastTransitionTime: "2026-06-29T10:20:13Z"
+    message: The Gateway API CRD versions are supported
+    observedGeneration: 1
+    reason: SupportedVersion
+    status: "True"
+    type: SupportedVersion
+  - lastTransitionTime: "2026-06-29T10:20:13Z"
+    message: The ParametersRef resource is resolved
+    observedGeneration: 1
+    reason: ResolvedRefs
+    status: "True"
+    type: ResolvedRefs
+  supportedFeatures:
+  - name: BackendTLSPolicy
+  - name: GRPCRoute
+  - name: Gateway
+  - name: GatewayAddressEmpty
+  - name: GatewayBackendClientCertificate
+  - name: GatewayFrontendClientCertificateValidation
+  - name: GatewayFrontendClientCertificateValidationInsecureFallback
+  - name: GatewayHTTPListenerIsolation
+  - name: GatewayHTTPSListenerDetectMisdirectedRequests
+  - name: GatewayInfrastructurePropagation
+  - name: GatewayPort8080
+  - name: GatewayStaticAddresses
+  - name: HTTPRoute
+  - name: HTTPRoute303RedirectStatusCode
+  - name: HTTPRoute307RedirectStatusCode
+  - name: HTTPRoute308RedirectStatusCode
+  - name: HTTPRouteBackendProtocolWebSocket
+  - name: HTTPRouteCORS
+  - name: HTTPRouteDestinationPortMatching
+  - name: HTTPRouteHostRewrite
+  - name: HTTPRouteMethodMatching
+  - name: HTTPRouteParentRefPort
+  - name: HTTPRoutePathRedirect
+  - name: HTTPRoutePathRewrite
+  - name: HTTPRoutePortRedirect
+  - name: HTTPRouteQueryParamMatching
+  - name: HTTPRouteRequestMirror
+  - name: HTTPRouteRequestMultipleMirrors
+  - name: HTTPRouteRequestPercentageMirror
+  - name: HTTPRouteResponseHeaderModification
+  - name: HTTPRouteSchemeRedirect
+  - name: ListenerSet
+  - name: ReferenceGrant
+  - name: TLSRoute

@@ -1,0 +1,73 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"gateway.networking.k8s.io/v1","kind":"Gateway","metadata":{"annotations":{},"name":"edge-gw","namespace":"gateway-system"},"spec":{"gatewayClassName":"nginx","listeners":[{"allowedRoutes":{"namespaces":{"from":"All"}},"hostname":"mygateway-app.local","name":"http","port":80,"protocol":"HTTP"}]}}
+  creationTimestamp: "2026-06-29T10:40:37Z"
+  generation: 1
+  name: edge-gw
+  namespace: gateway-system
+  resourceVersion: "1044396"
+  uid: 2d2dad13-f350-4431-ac62-ee9bdc09c56e
+spec:
+  gatewayClassName: nginx
+  listeners:
+  - allowedRoutes:
+      namespaces:
+        from: All
+    hostname: mygateway-app.local
+    name: http
+    port: 80
+    protocol: HTTP
+status:
+  addresses:
+  - type: IPAddress
+    value: 172.18.0.6
+  attachedListenerSets: 0
+  conditions:
+  - lastTransitionTime: "2026-06-29T10:40:39Z"
+    message: The Gateway is accepted
+    observedGeneration: 1
+    reason: Accepted
+    status: "True"
+    type: Accepted
+  - lastTransitionTime: "2026-06-29T10:40:39Z"
+    message: The Gateway is programmed
+    observedGeneration: 1
+    reason: Programmed
+    status: "True"
+    type: Programmed
+  listeners:
+  - attachedRoutes: 0
+    conditions:
+    - lastTransitionTime: "2026-06-29T10:40:39Z"
+      message: The Listener is programmed
+      observedGeneration: 1
+      reason: Programmed
+      status: "True"
+      type: Programmed
+    - lastTransitionTime: "2026-06-29T10:40:39Z"
+      message: The Listener is accepted
+      observedGeneration: 1
+      reason: Accepted
+      status: "True"
+      type: Accepted
+    - lastTransitionTime: "2026-06-29T10:40:39Z"
+      message: All references are resolved
+      observedGeneration: 1
+      reason: ResolvedRefs
+      status: "True"
+      type: ResolvedRefs
+    - lastTransitionTime: "2026-06-29T10:40:39Z"
+      message: No conflicts
+      observedGeneration: 1
+      reason: NoConflicts
+      status: "False"
+      type: Conflicted
+    name: http
+    supportedKinds:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+    - group: gateway.networking.k8s.io
+      kind: GRPCRoute
