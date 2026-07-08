@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: ubuntupod
+  name: ubuntupod
+spec:
+  securityContext:
+    runAsUser: 1000
+    runAsGroup: 1000
+  containers:
+  - args:
+    - sleep
+    - infinity
+    image: spurin/rootshell:latest
+    name: ubuntupod
+    resources: {}
+    securityContext:
+      allowPrivilegeEscalation: false # cannot run /rootshell anymore
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
