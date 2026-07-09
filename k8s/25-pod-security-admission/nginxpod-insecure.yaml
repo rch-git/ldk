@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: nginxpod-insecure
+  name: nginxpod-insecure
+  namespace: psa-unrestricted
+spec:
+  hostNetwork: true
+  hostPID: true
+  containers:
+  - image: nginx
+    name: nginxpod-insecure
+    securityContext:
+      privileged: true
+      runAsUser: 0 # run as root
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

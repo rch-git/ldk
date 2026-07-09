@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: nginxpod-warnaudit
+  name: nginxpod-warnaudit
+  namespace: psa-warn-audit
+spec:
+  containers:
+  - image: nginx:stable
+    name: nginxpod-warnaudit
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

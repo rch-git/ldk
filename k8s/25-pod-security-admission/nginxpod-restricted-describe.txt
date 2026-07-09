@@ -1,0 +1,61 @@
+Name:             nginxpod-restricted
+Namespace:        psa-restricted
+Priority:         0
+Service Account:  default
+Node:             klc-worker/172.18.0.4
+Start Time:       Thu, 09 Jul 2026 07:32:10 -0500
+Labels:           run=nginxpod-restricted
+Annotations:      <none>
+Status:           Pending
+IP:               10.244.1.8
+IPs:
+  IP:  10.244.1.8
+Containers:
+  nginxpod-restricted:
+    Container ID:    
+    Image:           nginx
+    Image ID:        
+    Port:            <none>
+    Host Port:       <none>
+    SeccompProfile:  RuntimeDefault
+    State:           Waiting
+      Reason:        CreateContainerConfigError
+    Ready:           False
+    Restart Count:   0
+    Environment:     <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-xv727 (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       False 
+  ContainersReady             False 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-xv727:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason     Age                  From               Message
+  ----     ------     ----                 ----               -------
+  Normal   Scheduled  2m13s                default-scheduler  Successfully assigned psa-restricted/nginxpod-restricted to klc-worker
+  Normal   Pulled     2m12s                kubelet            spec.containers{nginxpod-restricted}: Successfully pulled image "nginx" in 833ms (833ms including waiting). Image size: 63132621 bytes.
+  Normal   Pulled     2m11s                kubelet            spec.containers{nginxpod-restricted}: Successfully pulled image "nginx" in 865ms (865ms including waiting). Image size: 63132621 bytes.
+  Normal   Pulled     114s                 kubelet            spec.containers{nginxpod-restricted}: Successfully pulled image "nginx" in 1.051s (1.051s including waiting). Image size: 63132621 bytes.
+  Normal   Pulled     100s                 kubelet            spec.containers{nginxpod-restricted}: Successfully pulled image "nginx" in 753ms (753ms including waiting). Image size: 63132621 bytes.
+  Normal   Pulled     86s                  kubelet            spec.containers{nginxpod-restricted}: Successfully pulled image "nginx" in 861ms (861ms including waiting). Image size: 63132621 bytes.
+  Normal   Pulled     72s                  kubelet            spec.containers{nginxpod-restricted}: Successfully pulled image "nginx" in 892ms (892ms including waiting). Image size: 63132621 bytes.
+  Normal   Pulled     60s                  kubelet            spec.containers{nginxpod-restricted}: Successfully pulled image "nginx" in 877ms (877ms including waiting). Image size: 63132621 bytes.
+  Normal   Pulled     43s                  kubelet            spec.containers{nginxpod-restricted}: Successfully pulled image "nginx" in 1.562s (1.562s including waiting). Image size: 63132621 bytes.
+  Normal   Pulled     30s                  kubelet            spec.containers{nginxpod-restricted}: Successfully pulled image "nginx" in 942ms (942ms including waiting). Image size: 63132621 bytes.
+  Normal   Pulling    6s (x11 over 2m13s)  kubelet            spec.containers{nginxpod-restricted}: Pulling image "nginx"
+  Warning  Failed     5s (x11 over 2m12s)  kubelet            spec.containers{nginxpod-restricted}: Error: container has runAsNonRoot and image will run as root (pod: "nginxpod-restricted_psa-restricted(e87aa9c4-28cd-47e8-9913-a24fd8aaf630)", container: nginxpod-restricted)
+  Normal   Pulled     5s (x2 over 17s)     kubelet            spec.containers{nginxpod-restricted}: (combined from similar events): Successfully pulled image "nginx" in 871ms (871ms including waiting). Image size: 63132621 bytes.

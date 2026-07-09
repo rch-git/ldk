@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: nginxpod-baseline
+  name: nginxpod-baseline
+  namespace: psa-baseline
+spec:
+  hostNetwork: true
+  hostPID: true
+  containers:
+  - image: nginx
+    name: nginxpod-baseline
+    securityContext:
+      privileged: true
+      runAsUser: 0 # run as root
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
