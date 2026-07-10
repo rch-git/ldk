@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: nginxwebdep
+  name: finance-nginxwebdep
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: nginxwebdep
+status:
+  loadBalancer: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginxwebdep
+  name: finance-nginxwebdep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginxwebdep
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: nginxwebdep
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        ports:
+        - containerPort: 80
+        resources: {}
+status: {}
