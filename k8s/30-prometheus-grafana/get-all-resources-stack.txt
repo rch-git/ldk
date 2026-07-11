@@ -1,0 +1,67 @@
+NAMESPACE            NAME                                                         READY   STATUS    RESTARTS        AGE
+default              pod/alertmanager-myprom-kube-prometheus-sta-alertmanager-0   2/2     Running   0               81s
+default              pod/myprom-grafana-59945674bc-klxm7                          3/3     Running   0               87s
+default              pod/myprom-kube-prometheus-sta-operator-75c89c9479-xq642     1/1     Running   0               87s
+default              pod/myprom-kube-state-metrics-759dd9f5b-8xztz                1/1     Running   0               87s
+default              pod/myprom-prometheus-node-exporter-rgt5g                    1/1     Running   0               87s
+default              pod/myprom-prometheus-node-exporter-sk4vx                    1/1     Running   0               87s
+default              pod/myprom-prometheus-node-exporter-wjtr4                    1/1     Running   0               87s
+default              pod/prometheus-myprom-kube-prometheus-sta-prometheus-0       2/2     Running   0               80s
+kube-system          pod/coredns-7d764666f9-8kwgz                                 1/1     Running   1 (3h38m ago)   23h
+kube-system          pod/coredns-7d764666f9-kmc9k                                 1/1     Running   1 (3h38m ago)   23h
+kube-system          pod/etcd-klc-control-plane                                   1/1     Running   0               3h37m
+kube-system          pod/kindnet-7qjbt                                            1/1     Running   1 (3h38m ago)   23h
+kube-system          pod/kindnet-7t8nt                                            1/1     Running   1 (3h38m ago)   23h
+kube-system          pod/kindnet-crxc6                                            1/1     Running   1 (3h38m ago)   23h
+kube-system          pod/kube-apiserver-klc-control-plane                         1/1     Running   0               3h37m
+kube-system          pod/kube-controller-manager-klc-control-plane                1/1     Running   1 (3h38m ago)   23h
+kube-system          pod/kube-proxy-ckzpg                                         1/1     Running   1 (3h38m ago)   23h
+kube-system          pod/kube-proxy-k85wl                                         1/1     Running   1 (3h38m ago)   23h
+kube-system          pod/kube-proxy-p8mtv                                         1/1     Running   1 (3h38m ago)   23h
+kube-system          pod/kube-scheduler-klc-control-plane                         1/1     Running   1 (3h38m ago)   23h
+kube-system          pod/metrics-server-9c47cf9fd-bvtrz                           1/1     Running   3 (3h36m ago)   23h
+local-path-storage   pod/local-path-provisioner-67b8995b4b-db2gz                  1/1     Running   2 (3h37m ago)   23h
+
+NAMESPACE     NAME                                                         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)                        AGE
+default       service/alertmanager-operated                                ClusterIP   None           <none>        9093/TCP,9094/TCP,9094/UDP     81s
+default       service/kubernetes                                           ClusterIP   10.96.0.1      <none>        443/TCP                        23h
+default       service/myprom-grafana                                       ClusterIP   10.96.74.12    <none>        80/TCP                         87s
+default       service/myprom-kube-prometheus-sta-alertmanager              ClusterIP   10.96.177.21   <none>        9093/TCP,8080/TCP              87s
+default       service/myprom-kube-prometheus-sta-operator                  ClusterIP   10.96.222.37   <none>        443/TCP                        87s
+default       service/myprom-kube-prometheus-sta-prometheus                ClusterIP   10.96.109.63   <none>        9090/TCP,8080/TCP              87s
+default       service/myprom-kube-state-metrics                            ClusterIP   10.96.159.58   <none>        8080/TCP                       87s
+default       service/myprom-prometheus-node-exporter                      ClusterIP   10.96.180.13   <none>        9100/TCP                       87s
+default       service/prometheus-operated                                  ClusterIP   None           <none>        9090/TCP                       80s
+kube-system   service/kube-dns                                             ClusterIP   10.96.0.10     <none>        53/UDP,53/TCP,9153/TCP         23h
+kube-system   service/metrics-server                                       ClusterIP   10.96.224.76   <none>        443/TCP                        23h
+kube-system   service/myprom-kube-prometheus-sta-coredns                   ClusterIP   None           <none>        9153/TCP                       87s
+kube-system   service/myprom-kube-prometheus-sta-kube-controller-manager   ClusterIP   None           <none>        10257/TCP                      87s
+kube-system   service/myprom-kube-prometheus-sta-kube-etcd                 ClusterIP   None           <none>        2381/TCP                       87s
+kube-system   service/myprom-kube-prometheus-sta-kube-proxy                ClusterIP   None           <none>        10249/TCP                      87s
+kube-system   service/myprom-kube-prometheus-sta-kube-scheduler            ClusterIP   None           <none>        10259/TCP                      87s
+kube-system   service/myprom-kube-prometheus-sta-kubelet                   ClusterIP   None           <none>        10250/TCP,4194/TCP,10255/TCP   81s
+
+NAMESPACE     NAME                                             DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR            AGE
+default       daemonset.apps/myprom-prometheus-node-exporter   3         3         3       3            3           kubernetes.io/os=linux   87s
+kube-system   daemonset.apps/kindnet                           3         3         3       3            3           kubernetes.io/os=linux   23h
+kube-system   daemonset.apps/kube-proxy                        3         3         3       3            3           kubernetes.io/os=linux   23h
+
+NAMESPACE            NAME                                                  READY   UP-TO-DATE   AVAILABLE   AGE
+default              deployment.apps/myprom-grafana                        1/1     1            1           87s
+default              deployment.apps/myprom-kube-prometheus-sta-operator   1/1     1            1           87s
+default              deployment.apps/myprom-kube-state-metrics             1/1     1            1           87s
+kube-system          deployment.apps/coredns                               2/2     2            2           23h
+kube-system          deployment.apps/metrics-server                        1/1     1            1           23h
+local-path-storage   deployment.apps/local-path-provisioner                1/1     1            1           23h
+
+NAMESPACE            NAME                                                             DESIRED   CURRENT   READY   AGE
+default              replicaset.apps/myprom-grafana-59945674bc                        1         1         1       87s
+default              replicaset.apps/myprom-kube-prometheus-sta-operator-75c89c9479   1         1         1       87s
+default              replicaset.apps/myprom-kube-state-metrics-759dd9f5b              1         1         1       87s
+kube-system          replicaset.apps/coredns-7d764666f9                               2         2         2       23h
+kube-system          replicaset.apps/metrics-server-9c47cf9fd                         1         1         1       23h
+local-path-storage   replicaset.apps/local-path-provisioner-67b8995b4b                1         1         1       23h
+
+NAMESPACE   NAME                                                                    READY   AGE
+default     statefulset.apps/alertmanager-myprom-kube-prometheus-sta-alertmanager   1/1     81s
+default     statefulset.apps/prometheus-myprom-kube-prometheus-sta-prometheus       1/1     80s
