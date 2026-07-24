@@ -58,5 +58,3 @@
 - “Kube-proxy = Service VIP → Pod load balancing on every node.”
 - “API server watcher → programs iptables/IPVS.”
 - “Not responsible for Pod networking (CNI).”
-
-Would you like a set of KCNA-style multiple-choice trivia questions on kube-proxy (or on kubelet, CNI, Services, etc.) next? Or a comparison table with other components? Keep firing questions as you prepare! 🚀
