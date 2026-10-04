@@ -1,0 +1,8 @@
+[user]
+	name = RC
+	email = alinuxuser@fastmail.com
+[alias]
+	acp = "!f() { git add -A && git commit -m \"$@\" && git push; }; f"
+	aamd = "!f() { git add -A && git commit --amend --no-edit; }; f"
+	ac = "!f() { git add -A && git commit -m \"$@\"; }; f"
+	sqmaster = "!f() { msg=\"${*:-Squash merge dev}\"; git checkout master && git fetch && git reset --hard origin/master && git read-tree --reset -u dev && git commit -m \"$msg\" --allow-empty && git push --force && git checkout dev; }; f"
